@@ -146,12 +146,21 @@ const resolvers = {
   }
 };
 
-const server = new ApolloServer({ typeDefs, resolvers, introspection: true });
+// Create Apollo server - disable persistedQueries to avoid unbounded cache warning
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  introspection: true,
+  // turn off persisted queries to avoid unbounded cache warning in serverless
+  persistedQueries: false,
+});
 let serverHandler;
 export default async function handler(req, res) {
   if (!serverHandler) {
     await server.start();
-    serverHandler = server.createHandler({ path: "/api/graphql" });
+    // serverHandler = server.createHandler({ path: "/api/graphql" }); //prev code causing only this url to work and stop /graphql
+    // do NOT pass a "path" option here — let the handler respond regardless of URL path
+    serverHandler = server.createHandler();
   }
   return serverHandler(req, res);
 }
