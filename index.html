@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SWAPI GraphQL Wrapper</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial;padding:24px;max-width:900px;margin:auto}
+    pre{background:#f6f8fa;padding:12px;border-radius:6px;overflow:auto}
+    a{color:#0070f3}
+  </style>
+</head>
+<body>
+  <h1>SWAPI GraphQL Wrapper</h1>
+  <p>This project exposes a GraphQL API that wraps the <code>swapi.py4e.com</code> REST mirror and provides full starship data (manufacturers, crew, passengers, consumables, etc.).</p>
+
+  <h2>GraphQL Endpoint</h2>
+  <p><code>POST https://<strong>your-domain</strong>/graphql</code> (or <code>/api/graphql</code>)</p>
+
+  <h3>Example curl</h3>
+  <pre>
+curl -s -X POST "https://swapi-gql-wrapper.vercel.app/graphql" \
+  -H "Content-Type: application/json" \
+  -d '{"query":"query{ starshipByName(name:\"Star Destroyer\"){ name crew manufacturers passengers consumables dataWarning } }"}' | jq
+  </pre>
+
+  <h2>Fallback</h2>
+  <p>If the upstream REST API fails, the server responds with data from <code>fallback.json</code> and sets <code>dataWarning</code> on the starship object.</p>
+
+  <h2>Source</h2>
+  <p>Repo: <a href="https://github.com/your-username/swapi-gql">github.com/your-username/swapi-gql</a></p>
+</body>
+</html>
