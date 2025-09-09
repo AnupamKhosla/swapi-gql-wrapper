@@ -2,17 +2,23 @@
 
 Created by Anupam khosla with the help of chatgpt.
 
+
 This project wraps the SWAPI REST mirror (`https://swapi.py4e.com/api`) with a GraphQL endpoint,
 exposing starship data (including `manufacturers`, `crew`, `passengers`, `consumables`, etc.).
 
-## Endpoints
+**Deployed endpoint (serverless function)**  
+`POST https://swapi-gql-wrapper.vercel.app/graphql`
 
-- GraphQL (serverless): `POST https://<your-domain>/api/graphql`
-- Friendly path (with rewrite): `POST https://<your-domain>/graphql` (if `vercel.json` added)
+> If you'd rather call the raw function path, this also works:  
+> `POST https://swapi-gql-wrapper.vercel.app/api/graphql`
 
-## Example Query
+---
+
+## Quick curl example
+
+Request the GraphQL server type name:
 
 ```bash
-curl -s -X POST "https://<your-domain>/graphql" \
+curl -s -X POST "https://swapi-gql-wrapper.vercel.app/graphql" \
   -H "Content-Type: application/json" \
-  -d '{"query":"query{ starshipByName(name:\"Star Destroyer\"){ name crew manufacturers passengers consumables dataWarning } }"}' | jq
+  -d '{"query":"query{ __typename }"}' | jq

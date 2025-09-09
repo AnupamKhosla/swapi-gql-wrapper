@@ -1,33 +1,208 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>SWAPI GraphQL Wrapper</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SWAPI GraphQL Wrapper — Demo</title>
   <style>
-    body{font-family:system-ui,Segoe UI,Roboto,Arial;padding:24px;max-width:900px;margin:auto}
-    pre{background:#f6f8fa;padding:12px;border-radius:6px;overflow:auto}
-    a{color:#0070f3}
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#6ee7b7;
+      --glass: rgba(255,255,255,0.03);
+      --glass-2: rgba(255,255,255,0.02);
+      --radius:14px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#071027 0%, #081227 60%);color:#e6eef6}
+    .wrap{max-width:980px;margin:36px auto;padding:28px}
+    header {display:flex;align-items:center;gap:16px;margin-bottom:18px}
+    .logo{width:54px;height:54px;border-radius:12px;background:linear-gradient(135deg,#0ea5a0,#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:20px;box-shadow:0 6px 24px rgba(2,6,23,0.6)}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:4px 0 0;color:var(--muted);font-size:13px}
+    .card{background:linear-gradient(180deg,var(--glass),var(--glass-2));border-radius:var(--radius);padding:18px;box-shadow:0 6px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.04)}
+    .controls{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+    input[type="text"]{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 12px;border-radius:10px;color:inherit;min-width:200px}
+    button{background:linear-gradient(90deg,#10b981,#06b6d4);border:none;padding:10px 14px;border-radius:10px;color:#052020;font-weight:700;cursor:pointer}
+    button.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent);font-weight:600}
+    .meta{color:var(--muted);font-size:13px;margin-bottom:12px}
+    .result{margin-top:12px;display:flex;gap:16px;flex-wrap:wrap}
+    .panel{flex:1 1 380px;min-width:300px;max-height:560px;overflow:auto}
+    pre {white-space:pre-wrap;background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02);font-size:13px;color:#cfe7ea}
+    .status{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:13px}
+    .spinner { width:20px;height:20px;border-radius:50%;box-shadow:inset 0 0 0 3px rgba(255,255,255,0.08);position:relative;overflow:hidden; }
+    .spinner:after{ content:"";position:absolute;left:0;top:0;right:0;bottom:0;border-radius:50%; background:linear-gradient(90deg, transparent 40%, #fff 60%); transform:translateX(-70%); animation:spin 900ms linear infinite; mix-blend-mode:screen;opacity:0.9; }
+    @keyframes spin{to{transform:translateX(170%)}}
+    .ok{color:var(--accent);font-weight:700}
+    .err{color:#ff7b7b;font-weight:700}
+    footer{margin-top:20px;color:var(--muted);font-size:13px}
+    a.small{color:var(--accent);text-decoration:none}
+    .summary { display:flex; gap:12px; align-items:center; margin-top:8px; }
+    .card-small { background: rgba(255,255,255,0.02); padding:10px 12px; border-radius:10px; min-width:160px; border:1px solid rgba(255,255,255,0.03); }
   </style>
 </head>
 <body>
-  <h1>SWAPI GraphQL Wrapper</h1>
-  <p>This project exposes a GraphQL API that wraps the <code>swapi.py4e.com</code> REST mirror and provides full starship data (manufacturers, crew, passengers, consumables, etc.).</p>
+  <div class="wrap">
+    <header>
+      <div class="logo">SW</div>
+      <div>
+        <h1>SWAPI GraphQL Wrapper — Demo</h1>
+        <p class="lead">Live demo calling <code>/graphql</code> on <strong>swapi-gql-wrapper.vercel.app</strong> and showing results.</p>
+      </div>
+    </header>
 
-  <h2>GraphQL Endpoint</h2>
-  <p><code>POST https://<strong>your-domain</strong>/graphql</code> (or <code>/api/graphql</code>)</p>
+    <div class="card">
+      <div class="controls">
+        <input id="nameInput" placeholder="Starship name (e.g. Star Destroyer)" value="Star Destroyer" />
+        <button id="fetchBtn">Fetch</button>
+        <button id="refetchBtn" class="secondary">Refetch</button>
+        <div style="flex:1"></div>
+        <div class="meta">Endpoint (will try): <code>/graphql</code> → <code>/api/graphql</code></div>
+      </div>
 
-  <h3>Example curl</h3>
-  <pre>
-curl -s -X POST "https://swapi-gql-wrapper.vercel.app/graphql" \
-  -H "Content-Type: application/json" \
-  -d '{"query":"query{ starshipByName(name:\"Star Destroyer\"){ name crew manufacturers passengers consumables dataWarning } }"}' | jq
-  </pre>
+      <div class="status" id="statusRow">
+        <div id="spinner" style="display:none" class="spinner" aria-hidden="true"></div>
+        <div id="statusText">Ready</div>
+      </div>
 
-  <h2>Fallback</h2>
-  <p>If the upstream REST API fails, the server responds with data from <code>fallback.json</code> and sets <code>dataWarning</code> on the starship object.</p>
+      <div class="result">
+        <div class="panel">
+          <h3 style="margin-top:8px;margin-bottom:6px">Response (pretty)</h3>
+          <pre id="pretty">— no result —</pre>
+          <div class="summary" id="summaryRow" style="display:none">
+            <div class="card-small"><strong id="sName">—</strong><div style="font-size:12px;color:var(--muted)">Name</div></div>
+            <div class="card-small"><strong id="sCrew">—</strong><div style="font-size:12px;color:var(--muted)">Crew</div></div>
+            <div class="card-small"><strong id="sMan">—</strong><div style="font-size:12px;color:var(--muted)">Manufacturers</div></div>
+          </div>
+        </div>
 
-  <h2>Source</h2>
-  <p>Repo: <a href="https://github.com/your-username/swapi-gql">github.com/your-username/swapi-gql</a></p>
+        <div class="panel">
+          <h3 style="margin-top:8px;margin-bottom:6px">Raw json</h3>
+          <pre id="raw">— no result —</pre>
+        </div>
+      </div>
+
+      <footer>
+        <div>Note: If upstream REST fails, the server will return data from <code>fallback.json</code> and set <code>dataWarning</code>.</div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // endpoints tried in order
+    const ENDPOINTS = [
+      "https://swapi-gql-wrapper.vercel.app/graphql",
+      "https://swapi-gql-wrapper.vercel.app/api/graphql"
+    ].map(p => location.origin + p);
+
+    const QUERY = `
+      query($name:String!) {
+        starshipByName(name:$name) {
+          name
+          model
+          crew
+          passengers
+          manufacturers
+          consumables
+          cost_in_credits
+          dataWarning
+        }
+      }
+    `;
+
+    const nameInput = document.getElementById("nameInput");
+    const fetchBtn = document.getElementById("fetchBtn");
+    const refetchBtn = document.getElementById("refetchBtn");
+    const statusText = document.getElementById("statusText");
+    const spinner = document.getElementById("spinner");
+    const pretty = document.getElementById("pretty");
+    const raw = document.getElementById("raw");
+    const summaryRow = document.getElementById("summaryRow");
+    const sName = document.getElementById("sName");
+    const sCrew = document.getElementById("sCrew");
+    const sMan = document.getElementById("sMan");
+
+    function showLoading(msg = "Loading…") { spinner.style.display = "inline-block"; statusText.textContent = msg; }
+    function hideLoading(msg = "Ready") { spinner.style.display = "none"; statusText.textContent = msg; }
+
+    function setResult(obj) {
+      pretty.textContent = JSON.stringify(obj, null, 2);
+      raw.textContent = JSON.stringify(obj, null, 0);
+      const node = obj?.data?.starshipByName ?? null;
+      if (node) {
+        summaryRow.style.display = "flex";
+        sName.textContent = node.name ?? "—";
+        sCrew.textContent = node.crew ?? "—";
+        sMan.textContent = (node.manufacturers && node.manufacturers.length) ? node.manufacturers.join(", ") : "—";
+      } else {
+        summaryRow.style.display = "none";
+      }
+    }
+
+    function setError(err) {
+      pretty.textContent = "Error: " + (err.message || err);
+      raw.textContent = "";
+      statusText.textContent = "Error";
+      summaryRow.style.display = "none";
+    }
+
+    // try endpoints sequentially until one succeeds
+    async function fetchWithFallback(name) {
+      let lastErr = null;
+      for (const url of ENDPOINTS) {
+        try {
+          const res = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ query: QUERY, variables: { name } }),
+          });
+          if (!res.ok) {
+            const txt = await res.text().catch(() => "");
+            lastErr = new Error(`HTTP ${res.status} from ${url}: ${txt}`);
+            console.warn(lastErr);
+            continue; // try next endpoint
+          }
+          const json = await res.json();
+          return { url, json };
+        } catch (err) {
+          lastErr = err;
+          console.warn(`Network error calling ${url}:`, err.message || err);
+          continue;
+        }
+      }
+      throw lastErr || new Error("All endpoints failed");
+    }
+
+    async function doFetch(name) {
+      if (!name) {
+        setError(new Error("Empty starship name"));
+        return;
+      }
+      showLoading("Fetching " + name + " …");
+      try {
+        const { url, json } = await fetchWithFallback(name);
+        // show which endpoint succeeded
+        hideLoading("OK — " + (url.endsWith("/api/graphql") ? "/api/graphql" : "/graphql"));
+        if (json.errors) {
+          setError(new Error("GraphQL errors: " + (json.errors.map(e => e.message).join("; "))));
+          return;
+        }
+        setResult(json);
+      } catch (err) {
+        // display friendly error with details for debugging
+        setError(err);
+        console.error("Fetch failed:", err);
+      }
+    }
+
+    fetchBtn.addEventListener("click", () => doFetch(nameInput.value.trim()));
+    refetchBtn.addEventListener("click", () => doFetch(nameInput.value.trim()));
+
+    // run once on page load
+    (async () => {
+      await doFetch(nameInput.value.trim());
+    })();
+  </script>
 </body>
 </html>
