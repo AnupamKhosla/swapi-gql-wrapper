@@ -6,7 +6,7 @@ import fs from "fs";
 import path from "path";
 
 // --- Config ---
-const REST_BASE = "https://swapi.py4e.com/api";
+const REST_BASE = "https://swapi.py4e.com/api2";
 const FALLBACK_PATH = path.join(process.cwd(), "fallback.json");
 const cache = new LRUCache({ max: 500, ttl: 1000 * 60 * 5 });
 
@@ -17,12 +17,11 @@ try {
     const raw = fs.readFileSync(FALLBACK_PATH, "utf8");
     FALLBACK_DATA = JSON.parse(raw || "[]");
   }
-  // console.log("Loaded fallback.json entries:", FALLBACK_DATA.length);
 } catch (e) {
   console.warn("Could not load fallback.json:", e?.message || e);
 }
 
-// --- Schema (same as you had) ---
+// --- Schema ---
 const typeDefs = `#graphql
 type Starship {
   id: ID
@@ -41,8 +40,15 @@ type Starship {
   hyperdrive_rating: String
   MGLT: String
   films: [String]
+  film_names: [Film]
   url: String
   dataWarning: String
+}
+type Film {
+  title: String
+  episode_id: Int
+  director: String
+  release_date: String
 }
 
 type StarshipEdge { node: Starship }
@@ -52,10 +58,12 @@ type Query {
   allStarships(page: Int): StarshipConnection
   starshipById(id: ID!): Starship
   starshipByName(name: String!): Starship
+  filmById(id: ID!): Film
+  allFilms: [Film]
 }
 `;
 
-// --- Helpers (same logic as before) ---
+// --- Helpers ---
 async function cachedFetch(url) {
   const key = url;
   if (cache.has(key)) return { json: cache.get(key), warning: null };
@@ -73,34 +81,59 @@ async function cachedFetch(url) {
     console.warn("REST fetch failed for", url, err?.message || err);
 
     let fallbackMatch = null;
-    fallbackMatch =
-      FALLBACK_DATA.find(
-        (s) =>
-          (s.url &&
-            url.endsWith(
-              s.url.replace("https://swapi.py4e.com/api", "").replace(/^\/+/, "")
-            )) ||
-          url === s.url
-      ) || null;
 
+    // Old style: fallback.json was a flat array of starships
+    if (Array.isArray(FALLBACK_DATA)) {
+      fallbackMatch =
+        FALLBACK_DATA.find(
+          (s) =>
+            (s.url &&
+              url.endsWith(
+                s.url.replace("https://swapi.py4e.com/api", "").replace(/^\/+/, "")
+              )) ||
+            url === s.url
+        ) || null;
+    }
+
+    // New style: structured { starships: [], films: [] }
+    if (!fallbackMatch && FALLBACK_DATA.starships) {
+      fallbackMatch =
+        FALLBACK_DATA.starships.find((s) => s.url === url) || null;
+    }
+    if (!fallbackMatch && FALLBACK_DATA.films) {
+      fallbackMatch =
+        FALLBACK_DATA.films.find((f) => f.url === url) || null;
+    }
+
+    // Handle search queries (?search=)
     if (!fallbackMatch && url.includes("?search=")) {
       const qp = url.split("?")[1];
       try {
         const params = new URLSearchParams(qp);
         const name = params.get("search");
-        if (name)
-          fallbackMatch = FALLBACK_DATA.find(
-            (s) => s.name && s.name.toLowerCase() === decodeURIComponent(name).toLowerCase()
+        if (name) {
+          const pool = FALLBACK_DATA.starships || FALLBACK_DATA;
+          fallbackMatch = pool.find(
+            (s) =>
+              s.name &&
+              s.name.toLowerCase() === decodeURIComponent(name).toLowerCase()
           );
+        }
       } catch (e) {}
     }
 
-    if (!fallbackMatch && FALLBACK_DATA.length > 0) fallbackMatch = FALLBACK_DATA[0];
+    // As a last resort, take the first entry
+    const pool = FALLBACK_DATA.starships || FALLBACK_DATA;
+    if (!fallbackMatch && pool.length > 0) {
+      fallbackMatch = pool[0];
+    }
 
     if (fallbackMatch) {
       const isCollection =
         url.includes("/starships/") &&
-        (url.includes("?") || url.endsWith("/starships/") || url.includes("/starships/?"));
+        (url.includes("?") ||
+          url.endsWith("/starships/") ||
+          url.includes("/starships/?"));
       const faux = isCollection ? { results: [fallbackMatch] } : fallbackMatch;
       return { json: faux, warning: "served-from-fallback-json" };
     }
@@ -118,7 +151,9 @@ function mapRestStarship(rest, warning = null) {
     model: r.model || null,
     starship_class: r.starship_class || null,
     manufacturer_raw: r.manufacturer || null,
-    manufacturers: r.manufacturer ? r.manufacturer.split(",").map((s) => s.trim()) : null,
+    manufacturers: r.manufacturer
+      ? r.manufacturer.split(",").map((s) => s.trim())
+      : null,
     length: r.length || null,
     crew: r.crew || null,
     passengers: r.passengers || null,
@@ -130,7 +165,7 @@ function mapRestStarship(rest, warning = null) {
     MGLT: r.MGLT || null,
     films: r.films || null,
     url: r.url || null,
-    dataWarning: warning || null
+    dataWarning: warning || null,
   };
 }
 
@@ -140,11 +175,15 @@ const resolvers = {
     allStarships: async (_, { page = 1 }) => {
       const url = `${REST_BASE}/starships/?page=${page}`;
       const { json, warning } = await cachedFetch(url);
-      const edges = (json.results || []).map((r) => ({ node: mapRestStarship(r, warning) }));
+      const edges = (json.results || []).map((r) => ({
+        node: mapRestStarship(r, warning),
+      }));
       return { edges, count: json.count || edges.length };
     },
     starshipById: async (_, { id }) => {
-      const url = String(id).startsWith("http") ? id : `${REST_BASE}/starships/${id}/`;
+      const url = String(id).startsWith("http")
+        ? id
+        : `${REST_BASE}/starships/${id}/`;
       const { json, warning } = await cachedFetch(url);
       return mapRestStarship(json, warning);
     },
@@ -153,31 +192,66 @@ const resolvers = {
       const { json, warning } = await cachedFetch(url);
       if (!json || (json.results && json.results.length === 0)) return null;
       return mapRestStarship(json, warning);
-    }
-  }
+    },
+    filmById: async (_, { id }) => {
+      const url = `https://swapi.dev/api/films/${id}/`;
+      const { json, warning } = await cachedFetch(url);
+      return {
+        ...json,
+        dataWarning: warning || null,
+      };
+    },
+    allFilms: async () => {
+      const url = `https://swapi.dev/api/films/`;
+      const { json, warning } = await cachedFetch(url);
+      return (json.results || []).map((f) => ({
+        ...f,
+        dataWarning: warning || null,
+      }));
+    },
+  },
+  Starship: {
+    film_names: async (parent) => {
+      if (!parent.films || parent.films.length === 0) return [];
+      return Promise.all(
+        parent.films.map(async (url) => {
+          try {
+            const { json } = await cachedFetch(url);
+            return {
+              title: json.title,
+              episode_id: json.episode_id,
+              director: json.director,
+              release_date: json.release_date,
+            };
+          } catch (err) {
+            console.warn("Film fetch failed:", url, err?.message || err);
+            return null;
+          }
+        })
+      ).then((results) => results.filter(Boolean));
+    },
+  },
 };
 
 // --- Apollo server instance ---
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  introspection: true
+  introspection: true,
 });
 
-// --- Next-compatible handler (no top-level await needed) ---
+// --- Next-compatible handler ---
 const nextHandler = startServerAndCreateNextHandler(server, {
-  context: async ({ req }) => ({ req })
+  context: async ({ req }) => ({ req }),
 });
 
-// --- Export a wrapper that sets CORS headers and handles OPTIONS ---
+// --- Export handler with CORS ---
 export default async function handler(req, res) {
-  // CORS headers for browser clients
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.setHeader("Access-Control-Allow-Credentials", "true");
 
-  // Preflight
   if (req.method === "OPTIONS") {
     res.statusCode = 200;
     res.end();
@@ -189,6 +263,6 @@ export default async function handler(req, res) {
 
 export const config = {
   api: {
-    bodyParser: false
-  }
+    bodyParser: false,
+  },
 };

@@ -1,813 +1,880 @@
-[
-  {
-    "name": "CR90 corvette",
-    "model": "CR90 corvette",
-    "manufacturer": "Corellian Engineering Corporation",
-    "manufacturers": [
-      "Corellian Engineering Corporation"
-    ],
-    "crew": "30-165",
-    "passengers": "600",
-    "consumables": "1 year",
-    "cargo_capacity": "3000000",
-    "max_atmosphering_speed": "950",
-    "hyperdrive_rating": "2.0",
-    "MGLT": "60",
-    "cost_in_credits": "3500000",
-    "starship_class": "corvette",
-    "films": [
-      "https://swapi.py4e.com/api/films/1/",
-      "https://swapi.py4e.com/api/films/3/",
-      "https://swapi.py4e.com/api/films/6/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/2/"
-  },
-  {
-    "name": "Star Destroyer",
-    "model": "Imperial I-class Star Destroyer",
-    "manufacturer": "Kuat Drive Yards",
-    "manufacturers": [
-      "Kuat Drive Yards"
-    ],
-    "crew": "47,060",
-    "passengers": "n/a",
-    "consumables": "2 years",
-    "cargo_capacity": "36000000",
-    "max_atmosphering_speed": "975",
-    "hyperdrive_rating": "2.0",
-    "MGLT": "60",
-    "cost_in_credits": "150000000",
-    "starship_class": "Star Destroyer",
-    "films": [
-      "https://swapi.py4e.com/api/films/1/",
-      "https://swapi.py4e.com/api/films/2/",
-      "https://swapi.py4e.com/api/films/3/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/3/"
-  },
-  {
-    "name": "Sentinel-class landing craft",
-    "model": "Sentinel-class landing craft",
-    "manufacturer": "Sienar Fleet Systems, Cyngus Spaceworks",
-    "manufacturers": [
-      "Sienar Fleet Systems",
-      "Cyngus Spaceworks"
-    ],
-    "crew": "5",
-    "passengers": "75",
-    "consumables": "1 month",
-    "cargo_capacity": "180000",
-    "max_atmosphering_speed": "1000",
-    "hyperdrive_rating": "1.0",
-    "MGLT": "70",
-    "cost_in_credits": "240000",
-    "starship_class": "landing craft",
-    "films": [
-      "https://swapi.py4e.com/api/films/1/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/5/"
-  },
-  {
-    "name": "Death Star",
-    "model": "DS-1 Orbital Battle Station",
-    "manufacturer": "Imperial Department of Military Research, Sienar Fleet Systems",
-    "manufacturers": [
-      "Imperial Department of Military Research",
-      "Sienar Fleet Systems"
-    ],
-    "crew": "342,953",
-    "passengers": "843,342",
-    "consumables": "3 years",
-    "cargo_capacity": "1000000000000",
-    "max_atmosphering_speed": "n/a",
-    "hyperdrive_rating": "4.0",
-    "MGLT": "10",
-    "cost_in_credits": "1000000000000",
-    "starship_class": "Deep Space Mobile Battlestation",
-    "films": [
-      "https://swapi.py4e.com/api/films/1/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/9/"
-  },
-  {
-    "name": "Millennium Falcon",
-    "model": "YT-1300 light freighter",
-    "manufacturer": "Corellian Engineering Corporation",
-    "manufacturers": [
-      "Corellian Engineering Corporation"
-    ],
-    "crew": "4",
-    "passengers": "6",
-    "consumables": "2 months",
-    "cargo_capacity": "100000",
-    "max_atmosphering_speed": "1050",
-    "hyperdrive_rating": "0.5",
-    "MGLT": "75",
-    "cost_in_credits": "100000",
-    "starship_class": "Light freighter",
-    "films": [
-      "https://swapi.py4e.com/api/films/1/",
-      "https://swapi.py4e.com/api/films/2/",
-      "https://swapi.py4e.com/api/films/3/",
-      "https://swapi.py4e.com/api/films/7/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/10/"
-  },
-  {
-    "name": "Y-wing",
-    "model": "BTL Y-wing",
-    "manufacturer": "Koensayr Manufacturing",
-    "manufacturers": [
-      "Koensayr Manufacturing"
-    ],
-    "crew": "2",
-    "passengers": "0",
-    "consumables": "1 week",
-    "cargo_capacity": "110",
-    "max_atmosphering_speed": "1000km",
-    "hyperdrive_rating": "1.0",
-    "MGLT": "80",
-    "cost_in_credits": "134999",
-    "starship_class": "assault starfighter",
-    "films": [
-      "https://swapi.py4e.com/api/films/1/",
-      "https://swapi.py4e.com/api/films/2/",
-      "https://swapi.py4e.com/api/films/3/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/11/"
-  },
-  {
-    "name": "X-wing",
-    "model": "T-65 X-wing",
-    "manufacturer": "Incom Corporation",
-    "manufacturers": [
-      "Incom Corporation"
-    ],
-    "crew": "1",
-    "passengers": "0",
-    "consumables": "1 week",
-    "cargo_capacity": "110",
-    "max_atmosphering_speed": "1050",
-    "hyperdrive_rating": "1.0",
-    "MGLT": "100",
-    "cost_in_credits": "149999",
-    "starship_class": "Starfighter",
-    "films": [
-      "https://swapi.py4e.com/api/films/1/",
-      "https://swapi.py4e.com/api/films/2/",
-      "https://swapi.py4e.com/api/films/3/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/12/"
-  },
-  {
-    "name": "TIE Advanced x1",
-    "model": "Twin Ion Engine Advanced x1",
-    "manufacturer": "Sienar Fleet Systems",
-    "manufacturers": [
-      "Sienar Fleet Systems"
-    ],
-    "crew": "1",
-    "passengers": "0",
-    "consumables": "5 days",
-    "cargo_capacity": "150",
-    "max_atmosphering_speed": "1200",
-    "hyperdrive_rating": "1.0",
-    "MGLT": "105",
-    "cost_in_credits": "unknown",
-    "starship_class": "Starfighter",
-    "films": [
-      "https://swapi.py4e.com/api/films/1/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/13/"
-  },
-  {
-    "name": "Executor",
-    "model": "Executor-class star dreadnought",
-    "manufacturer": "Kuat Drive Yards, Fondor Shipyards",
-    "manufacturers": [
-      "Kuat Drive Yards",
-      "Fondor Shipyards"
-    ],
-    "crew": "279,144",
-    "passengers": "38000",
-    "consumables": "6 years",
-    "cargo_capacity": "250000000",
-    "max_atmosphering_speed": "n/a",
-    "hyperdrive_rating": "2.0",
-    "MGLT": "40",
-    "cost_in_credits": "1143350000",
-    "starship_class": "Star dreadnought",
-    "films": [
-      "https://swapi.py4e.com/api/films/2/",
-      "https://swapi.py4e.com/api/films/3/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/15/"
-  },
-  {
-    "name": "Rebel transport",
-    "model": "GR-75 medium transport",
-    "manufacturer": "Gallofree Yards, Inc.",
-    "manufacturers": [
-      "Gallofree Yards",
-      "Inc."
-    ],
-    "crew": "6",
-    "passengers": "90",
-    "consumables": "6 months",
-    "cargo_capacity": "19000000",
-    "max_atmosphering_speed": "650",
-    "hyperdrive_rating": "4.0",
-    "MGLT": "20",
-    "cost_in_credits": "unknown",
-    "starship_class": "Medium transport",
-    "films": [
-      "https://swapi.py4e.com/api/films/2/",
-      "https://swapi.py4e.com/api/films/3/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/17/"
-  },
-  {
-    "name": "Slave 1",
-    "model": "Firespray-31-class patrol and attack",
-    "manufacturer": "Kuat Systems Engineering",
-    "manufacturers": [
-      "Kuat Systems Engineering"
-    ],
-    "crew": "1",
-    "passengers": "6",
-    "consumables": "1 month",
-    "cargo_capacity": "70000",
-    "max_atmosphering_speed": "1000",
-    "hyperdrive_rating": "3.0",
-    "MGLT": "70",
-    "cost_in_credits": "unknown",
-    "starship_class": "Patrol craft",
-    "films": [
-      "https://swapi.py4e.com/api/films/2/",
-      "https://swapi.py4e.com/api/films/5/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/21/"
-  },
-  {
-    "name": "Imperial shuttle",
-    "model": "Lambda-class T-4a shuttle",
-    "manufacturer": "Sienar Fleet Systems",
-    "manufacturers": [
-      "Sienar Fleet Systems"
-    ],
-    "crew": "6",
-    "passengers": "20",
-    "consumables": "2 months",
-    "cargo_capacity": "80000",
-    "max_atmosphering_speed": "850",
-    "hyperdrive_rating": "1.0",
-    "MGLT": "50",
-    "cost_in_credits": "240000",
-    "starship_class": "Armed government transport",
-    "films": [
-      "https://swapi.py4e.com/api/films/2/",
-      "https://swapi.py4e.com/api/films/3/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/22/"
-  },
-  {
-    "name": "EF76 Nebulon-B escort frigate",
-    "model": "EF76 Nebulon-B escort frigate",
-    "manufacturer": "Kuat Drive Yards",
-    "manufacturers": [
-      "Kuat Drive Yards"
-    ],
-    "crew": "854",
-    "passengers": "75",
-    "consumables": "2 years",
-    "cargo_capacity": "6000000",
-    "max_atmosphering_speed": "800",
-    "hyperdrive_rating": "2.0",
-    "MGLT": "40",
-    "cost_in_credits": "8500000",
-    "starship_class": "Escort ship",
-    "films": [
-      "https://swapi.py4e.com/api/films/2/",
-      "https://swapi.py4e.com/api/films/3/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/23/"
-  },
-  {
-    "name": "Calamari Cruiser",
-    "model": "MC80 Liberty type Star Cruiser",
-    "manufacturer": "Mon Calamari shipyards",
-    "manufacturers": [
-      "Mon Calamari shipyards"
-    ],
-    "crew": "5400",
-    "passengers": "1200",
-    "consumables": "2 years",
-    "cargo_capacity": "unknown",
-    "max_atmosphering_speed": "n/a",
-    "hyperdrive_rating": "1.0",
-    "MGLT": "60",
-    "cost_in_credits": "104000000",
-    "starship_class": "Star Cruiser",
-    "films": [
-      "https://swapi.py4e.com/api/films/3/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/27/"
-  },
-  {
-    "name": "A-wing",
-    "model": "RZ-1 A-wing Interceptor",
-    "manufacturer": "Alliance Underground Engineering, Incom Corporation",
-    "manufacturers": [
-      "Alliance Underground Engineering",
-      "Incom Corporation"
-    ],
-    "crew": "1",
-    "passengers": "0",
-    "consumables": "1 week",
-    "cargo_capacity": "40",
-    "max_atmosphering_speed": "1300",
-    "hyperdrive_rating": "1.0",
-    "MGLT": "120",
-    "cost_in_credits": "175000",
-    "starship_class": "Starfighter",
-    "films": [
-      "https://swapi.py4e.com/api/films/3/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/28/"
-  },
-  {
-    "name": "B-wing",
-    "model": "A/SF-01 B-wing starfighter",
-    "manufacturer": "Slayn & Korpil",
-    "manufacturers": [
-      "Slayn & Korpil"
-    ],
-    "crew": "1",
-    "passengers": "0",
-    "consumables": "1 week",
-    "cargo_capacity": "45",
-    "max_atmosphering_speed": "950",
-    "hyperdrive_rating": "2.0",
-    "MGLT": "91",
-    "cost_in_credits": "220000",
-    "starship_class": "Assault Starfighter",
-    "films": [
-      "https://swapi.py4e.com/api/films/3/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/29/"
-  },
-  {
-    "name": "Republic Cruiser",
-    "model": "Consular-class cruiser",
-    "manufacturer": "Corellian Engineering Corporation",
-    "manufacturers": [
-      "Corellian Engineering Corporation"
-    ],
-    "crew": "9",
-    "passengers": "16",
-    "consumables": "unknown",
-    "cargo_capacity": "unknown",
-    "max_atmosphering_speed": "900",
-    "hyperdrive_rating": "2.0",
-    "MGLT": "unknown",
-    "cost_in_credits": "unknown",
-    "starship_class": "Space cruiser",
-    "films": [
-      "https://swapi.py4e.com/api/films/4/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/31/"
-  },
-  {
-    "name": "Droid control ship",
-    "model": "Lucrehulk-class Droid Control Ship",
-    "manufacturer": "Hoersch-Kessel Drive, Inc.",
-    "manufacturers": [
-      "Hoersch-Kessel Drive",
-      "Inc."
-    ],
-    "crew": "175",
-    "passengers": "139000",
-    "consumables": "500 days",
-    "cargo_capacity": "4000000000",
-    "max_atmosphering_speed": "n/a",
-    "hyperdrive_rating": "2.0",
-    "MGLT": "unknown",
-    "cost_in_credits": "unknown",
-    "starship_class": "Droid control ship",
-    "films": [
-      "https://swapi.py4e.com/api/films/4/",
-      "https://swapi.py4e.com/api/films/5/",
-      "https://swapi.py4e.com/api/films/6/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/32/"
-  },
-  {
-    "name": "Naboo fighter",
-    "model": "N-1 starfighter",
-    "manufacturer": "Theed Palace Space Vessel Engineering Corps",
-    "manufacturers": [
-      "Theed Palace Space Vessel Engineering Corps"
-    ],
-    "crew": "1",
-    "passengers": "0",
-    "consumables": "7 days",
-    "cargo_capacity": "65",
-    "max_atmosphering_speed": "1100",
-    "hyperdrive_rating": "1.0",
-    "MGLT": "unknown",
-    "cost_in_credits": "200000",
-    "starship_class": "Starfighter",
-    "films": [
-      "https://swapi.py4e.com/api/films/4/",
-      "https://swapi.py4e.com/api/films/5/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/39/"
-  },
-  {
-    "name": "Naboo Royal Starship",
-    "model": "J-type 327 Nubian royal starship",
-    "manufacturer": "Theed Palace Space Vessel Engineering Corps, Nubia Star Drives",
-    "manufacturers": [
-      "Theed Palace Space Vessel Engineering Corps",
-      "Nubia Star Drives"
-    ],
-    "crew": "8",
-    "passengers": "unknown",
-    "consumables": "unknown",
-    "cargo_capacity": "unknown",
-    "max_atmosphering_speed": "920",
-    "hyperdrive_rating": "1.8",
-    "MGLT": "unknown",
-    "cost_in_credits": "unknown",
-    "starship_class": "yacht",
-    "films": [
-      "https://swapi.py4e.com/api/films/4/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/40/"
-  },
-  {
-    "name": "Scimitar",
-    "model": "Star Courier",
-    "manufacturer": "Republic Sienar Systems",
-    "manufacturers": [
-      "Republic Sienar Systems"
-    ],
-    "crew": "1",
-    "passengers": "6",
-    "consumables": "30 days",
-    "cargo_capacity": "2500000",
-    "max_atmosphering_speed": "1180",
-    "hyperdrive_rating": "1.5",
-    "MGLT": "unknown",
-    "cost_in_credits": "55000000",
-    "starship_class": "Space Transport",
-    "films": [
-      "https://swapi.py4e.com/api/films/4/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/41/"
-  },
-  {
-    "name": "J-type diplomatic barge",
-    "model": "J-type diplomatic barge",
-    "manufacturer": "Theed Palace Space Vessel Engineering Corps, Nubia Star Drives",
-    "manufacturers": [
-      "Theed Palace Space Vessel Engineering Corps",
-      "Nubia Star Drives"
-    ],
-    "crew": "5",
-    "passengers": "10",
-    "consumables": "1 year",
-    "cargo_capacity": "unknown",
-    "max_atmosphering_speed": "2000",
-    "hyperdrive_rating": "0.7",
-    "MGLT": "unknown",
-    "cost_in_credits": "2000000",
-    "starship_class": "Diplomatic barge",
-    "films": [
-      "https://swapi.py4e.com/api/films/5/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/43/"
-  },
-  {
-    "name": "AA-9 Coruscant freighter",
-    "model": "Botajef AA-9 Freighter-Liner",
-    "manufacturer": "Botajef Shipyards",
-    "manufacturers": [
-      "Botajef Shipyards"
-    ],
-    "crew": "unknown",
-    "passengers": "30000",
-    "consumables": "unknown",
-    "cargo_capacity": "unknown",
-    "max_atmosphering_speed": "unknown",
-    "hyperdrive_rating": "unknown",
-    "MGLT": "unknown",
-    "cost_in_credits": "unknown",
-    "starship_class": "freighter",
-    "films": [
-      "https://swapi.py4e.com/api/films/5/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/47/"
-  },
-  {
-    "name": "Jedi starfighter",
-    "model": "Delta-7 Aethersprite-class interceptor",
-    "manufacturer": "Kuat Systems Engineering",
-    "manufacturers": [
-      "Kuat Systems Engineering"
-    ],
-    "crew": "1",
-    "passengers": "0",
-    "consumables": "7 days",
-    "cargo_capacity": "60",
-    "max_atmosphering_speed": "1150",
-    "hyperdrive_rating": "1.0",
-    "MGLT": "unknown",
-    "cost_in_credits": "180000",
-    "starship_class": "Starfighter",
-    "films": [
-      "https://swapi.py4e.com/api/films/5/",
-      "https://swapi.py4e.com/api/films/6/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/48/"
-  },
-  {
-    "name": "H-type Nubian yacht",
-    "model": "H-type Nubian yacht",
-    "manufacturer": "Theed Palace Space Vessel Engineering Corps",
-    "manufacturers": [
-      "Theed Palace Space Vessel Engineering Corps"
-    ],
-    "crew": "4",
-    "passengers": "unknown",
-    "consumables": "unknown",
-    "cargo_capacity": "unknown",
-    "max_atmosphering_speed": "8000",
-    "hyperdrive_rating": "0.9",
-    "MGLT": "unknown",
-    "cost_in_credits": "unknown",
-    "starship_class": "yacht",
-    "films": [
-      "https://swapi.py4e.com/api/films/5/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/49/"
-  },
-  {
-    "name": "Republic Assault ship",
-    "model": "Acclamator I-class assault ship",
-    "manufacturer": "Rothana Heavy Engineering",
-    "manufacturers": [
-      "Rothana Heavy Engineering"
-    ],
-    "crew": "700",
-    "passengers": "16000",
-    "consumables": "2 years",
-    "cargo_capacity": "11250000",
-    "max_atmosphering_speed": "unknown",
-    "hyperdrive_rating": "0.6",
-    "MGLT": "unknown",
-    "cost_in_credits": "unknown",
-    "starship_class": "assault ship",
-    "films": [
-      "https://swapi.py4e.com/api/films/5/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/52/"
-  },
-  {
-    "name": "Solar Sailer",
-    "model": "Punworcca 116-class interstellar sloop",
-    "manufacturer": "Huppla Pasa Tisc Shipwrights Collective",
-    "manufacturers": [
-      "Huppla Pasa Tisc Shipwrights Collective"
-    ],
-    "crew": "3",
-    "passengers": "11",
-    "consumables": "7 days",
-    "cargo_capacity": "240",
-    "max_atmosphering_speed": "1600",
-    "hyperdrive_rating": "1.5",
-    "MGLT": "unknown",
-    "cost_in_credits": "35700",
-    "starship_class": "yacht",
-    "films": [
-      "https://swapi.py4e.com/api/films/5/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/58/"
-  },
-  {
-    "name": "Trade Federation cruiser",
-    "model": "Providence-class carrier/destroyer",
-    "manufacturer": "Rendili StarDrive, Free Dac Volunteers Engineering corps.",
-    "manufacturers": [
-      "Rendili StarDrive",
-      "Free Dac Volunteers Engineering corps."
-    ],
-    "crew": "600",
-    "passengers": "48247",
-    "consumables": "4 years",
-    "cargo_capacity": "50000000",
-    "max_atmosphering_speed": "1050",
-    "hyperdrive_rating": "1.5",
-    "MGLT": "unknown",
-    "cost_in_credits": "125000000",
-    "starship_class": "capital ship",
-    "films": [
-      "https://swapi.py4e.com/api/films/6/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/59/"
-  },
-  {
-    "name": "Theta-class T-2c shuttle",
-    "model": "Theta-class T-2c shuttle",
-    "manufacturer": "Cygnus Spaceworks",
-    "manufacturers": [
-      "Cygnus Spaceworks"
-    ],
-    "crew": "5",
-    "passengers": "16",
-    "consumables": "56 days",
-    "cargo_capacity": "50000",
-    "max_atmosphering_speed": "2000",
-    "hyperdrive_rating": "1.0",
-    "MGLT": "unknown",
-    "cost_in_credits": "1000000",
-    "starship_class": "transport",
-    "films": [
-      "https://swapi.py4e.com/api/films/6/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/61/"
-  },
-  {
-    "name": "Republic attack cruiser",
-    "model": "Senator-class Star Destroyer",
-    "manufacturer": "Kuat Drive Yards, Allanteen Six shipyards",
-    "manufacturers": [
-      "Kuat Drive Yards",
-      "Allanteen Six shipyards"
-    ],
-    "crew": "7400",
-    "passengers": "2000",
-    "consumables": "2 years",
-    "cargo_capacity": "20000000",
-    "max_atmosphering_speed": "975",
-    "hyperdrive_rating": "1.0",
-    "MGLT": "unknown",
-    "cost_in_credits": "59000000",
-    "starship_class": "star destroyer",
-    "films": [
-      "https://swapi.py4e.com/api/films/6/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/63/"
-  },
-  {
-    "name": "Naboo star skiff",
-    "model": "J-type star skiff",
-    "manufacturer": "Theed Palace Space Vessel Engineering Corps/Nubia Star Drives, Incorporated",
-    "manufacturers": [
-      "Theed Palace Space Vessel Engineering Corps/Nubia Star Drives",
-      "Incorporated"
-    ],
-    "crew": "3",
-    "passengers": "3",
-    "consumables": "unknown",
-    "cargo_capacity": "unknown",
-    "max_atmosphering_speed": "1050",
-    "hyperdrive_rating": "0.5",
-    "MGLT": "unknown",
-    "cost_in_credits": "unknown",
-    "starship_class": "yacht",
-    "films": [
-      "https://swapi.py4e.com/api/films/6/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/64/"
-  },
-  {
-    "name": "Jedi Interceptor",
-    "model": "Eta-2 Actis-class light interceptor",
-    "manufacturer": "Kuat Systems Engineering",
-    "manufacturers": [
-      "Kuat Systems Engineering"
-    ],
-    "crew": "1",
-    "passengers": "0",
-    "consumables": "2 days",
-    "cargo_capacity": "60",
-    "max_atmosphering_speed": "1500",
-    "hyperdrive_rating": "1.0",
-    "MGLT": "unknown",
-    "cost_in_credits": "320000",
-    "starship_class": "starfighter",
-    "films": [
-      "https://swapi.py4e.com/api/films/6/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/65/"
-  },
-  {
-    "name": "arc-170",
-    "model": "Aggressive Reconnaissance-170 starfighte",
-    "manufacturer": "Incom Corporation, Subpro Corporation",
-    "manufacturers": [
-      "Incom Corporation",
-      "Subpro Corporation"
-    ],
-    "crew": "3",
-    "passengers": "0",
-    "consumables": "5 days",
-    "cargo_capacity": "110",
-    "max_atmosphering_speed": "1000",
-    "hyperdrive_rating": "1.0",
-    "MGLT": "100",
-    "cost_in_credits": "155000",
-    "starship_class": "starfighter",
-    "films": [
-      "https://swapi.py4e.com/api/films/6/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/66/"
-  },
-  {
-    "name": "Banking clan frigte",
-    "model": "Munificent-class star frigate",
-    "manufacturer": "Hoersch-Kessel Drive, Inc, Gwori Revolutionary Industries",
-    "manufacturers": [
-      "Hoersch-Kessel Drive",
-      "Inc",
-      "Gwori Revolutionary Industries"
-    ],
-    "crew": "200",
-    "passengers": "unknown",
-    "consumables": "2 years",
-    "cargo_capacity": "40000000",
-    "max_atmosphering_speed": "unknown",
-    "hyperdrive_rating": "1.0",
-    "MGLT": "unknown",
-    "cost_in_credits": "57000000",
-    "starship_class": "cruiser",
-    "films": [
-      "https://swapi.py4e.com/api/films/6/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/68/"
-  },
-  {
-    "name": "Belbullab-22 starfighter",
-    "model": "Belbullab-22 starfighter",
-    "manufacturer": "Feethan Ottraw Scalable Assemblies",
-    "manufacturers": [
-      "Feethan Ottraw Scalable Assemblies"
-    ],
-    "crew": "1",
-    "passengers": "0",
-    "consumables": "7 days",
-    "cargo_capacity": "140",
-    "max_atmosphering_speed": "1100",
-    "hyperdrive_rating": "6",
-    "MGLT": "unknown",
-    "cost_in_credits": "168000",
-    "starship_class": "starfighter",
-    "films": [
-      "https://swapi.py4e.com/api/films/6/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/74/"
-  },
-  {
-    "name": "V-wing",
-    "model": "Alpha-3 Nimbus-class V-wing starfighter",
-    "manufacturer": "Kuat Systems Engineering",
-    "manufacturers": [
-      "Kuat Systems Engineering"
-    ],
-    "crew": "1",
-    "passengers": "0",
-    "consumables": "15 hours",
-    "cargo_capacity": "60",
-    "max_atmosphering_speed": "1050",
-    "hyperdrive_rating": "1.0",
-    "MGLT": "unknown",
-    "cost_in_credits": "102500",
-    "starship_class": "starfighter",
-    "films": [
-      "https://swapi.py4e.com/api/films/6/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/75/"
-  },
-  {
-    "name": "X-wing",
-    "model": "T-70 X-wing",
-    "manufacturer": "Incom Corporation",
-    "manufacturers": [
-      "Incom Corporation"
-    ],
-    "crew": "1",
-    "passengers": "0",
-    "consumables": "1 week",
-    "cargo_capacity": "110",
-    "max_atmosphering_speed": "1100",
-    "hyperdrive_rating": "1.0",
-    "MGLT": "110",
-    "cost_in_credits": "200000",
-    "starship_class": "Starfighter",
-    "films": [
-      "https://swapi.py4e.com/api/films/7/"
-    ],
-    "url": "https://swapi.py4e.com/api/starships/77/"
-  }
-]
+{
+  "starships": [
+    {
+      "name": "CR90 corvette",
+      "model": "CR90 corvette",
+      "manufacturer": "Corellian Engineering Corporation",
+      "manufacturers": [
+        "Corellian Engineering Corporation"
+      ],
+      "crew": "30-165",
+      "passengers": "600",
+      "consumables": "1 year",
+      "cargo_capacity": "3000000",
+      "max_atmosphering_speed": "950",
+      "hyperdrive_rating": "2.0",
+      "MGLT": "60",
+      "cost_in_credits": "3500000",
+      "starship_class": "corvette",
+      "films": [
+        "https://swapi.py4e.com/api/films/1/",
+        "https://swapi.py4e.com/api/films/3/",
+        "https://swapi.py4e.com/api/films/6/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/2/"
+    },
+    {
+      "name": "Star Destroyer",
+      "model": "Imperial I-class Star Destroyer",
+      "manufacturer": "Kuat Drive Yards",
+      "manufacturers": [
+        "Kuat Drive Yards"
+      ],
+      "crew": "47,060",
+      "passengers": "n/a",
+      "consumables": "2 years",
+      "cargo_capacity": "36000000",
+      "max_atmosphering_speed": "975",
+      "hyperdrive_rating": "2.0",
+      "MGLT": "60",
+      "cost_in_credits": "150000000",
+      "starship_class": "Star Destroyer",
+      "films": [
+        "https://swapi.py4e.com/api/films/1/",
+        "https://swapi.py4e.com/api/films/2/",
+        "https://swapi.py4e.com/api/films/3/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/3/"
+    },
+    {
+      "name": "Sentinel-class landing craft",
+      "model": "Sentinel-class landing craft",
+      "manufacturer": "Sienar Fleet Systems, Cyngus Spaceworks",
+      "manufacturers": [
+        "Sienar Fleet Systems",
+        "Cyngus Spaceworks"
+      ],
+      "crew": "5",
+      "passengers": "75",
+      "consumables": "1 month",
+      "cargo_capacity": "180000",
+      "max_atmosphering_speed": "1000",
+      "hyperdrive_rating": "1.0",
+      "MGLT": "70",
+      "cost_in_credits": "240000",
+      "starship_class": "landing craft",
+      "films": [
+        "https://swapi.py4e.com/api/films/1/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/5/"
+    },
+    {
+      "name": "Death Star",
+      "model": "DS-1 Orbital Battle Station",
+      "manufacturer": "Imperial Department of Military Research, Sienar Fleet Systems",
+      "manufacturers": [
+        "Imperial Department of Military Research",
+        "Sienar Fleet Systems"
+      ],
+      "crew": "342,953",
+      "passengers": "843,342",
+      "consumables": "3 years",
+      "cargo_capacity": "1000000000000",
+      "max_atmosphering_speed": "n/a",
+      "hyperdrive_rating": "4.0",
+      "MGLT": "10",
+      "cost_in_credits": "1000000000000",
+      "starship_class": "Deep Space Mobile Battlestation",
+      "films": [
+        "https://swapi.py4e.com/api/films/1/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/9/"
+    },
+    {
+      "name": "Millennium Falcon",
+      "model": "YT-1300 light freighter",
+      "manufacturer": "Corellian Engineering Corporation",
+      "manufacturers": [
+        "Corellian Engineering Corporation"
+      ],
+      "crew": "4",
+      "passengers": "6",
+      "consumables": "2 months",
+      "cargo_capacity": "100000",
+      "max_atmosphering_speed": "1050",
+      "hyperdrive_rating": "0.5",
+      "MGLT": "75",
+      "cost_in_credits": "100000",
+      "starship_class": "Light freighter",
+      "films": [
+        "https://swapi.py4e.com/api/films/1/",
+        "https://swapi.py4e.com/api/films/2/",
+        "https://swapi.py4e.com/api/films/3/",
+        "https://swapi.py4e.com/api/films/7/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/10/"
+    },
+    {
+      "name": "Y-wing",
+      "model": "BTL Y-wing",
+      "manufacturer": "Koensayr Manufacturing",
+      "manufacturers": [
+        "Koensayr Manufacturing"
+      ],
+      "crew": "2",
+      "passengers": "0",
+      "consumables": "1 week",
+      "cargo_capacity": "110",
+      "max_atmosphering_speed": "1000km",
+      "hyperdrive_rating": "1.0",
+      "MGLT": "80",
+      "cost_in_credits": "134999",
+      "starship_class": "assault starfighter",
+      "films": [
+        "https://swapi.py4e.com/api/films/1/",
+        "https://swapi.py4e.com/api/films/2/",
+        "https://swapi.py4e.com/api/films/3/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/11/"
+    },
+    {
+      "name": "X-wing",
+      "model": "T-65 X-wing",
+      "manufacturer": "Incom Corporation",
+      "manufacturers": [
+        "Incom Corporation"
+      ],
+      "crew": "1",
+      "passengers": "0",
+      "consumables": "1 week",
+      "cargo_capacity": "110",
+      "max_atmosphering_speed": "1050",
+      "hyperdrive_rating": "1.0",
+      "MGLT": "100",
+      "cost_in_credits": "149999",
+      "starship_class": "Starfighter",
+      "films": [
+        "https://swapi.py4e.com/api/films/1/",
+        "https://swapi.py4e.com/api/films/2/",
+        "https://swapi.py4e.com/api/films/3/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/12/"
+    },
+    {
+      "name": "TIE Advanced x1",
+      "model": "Twin Ion Engine Advanced x1",
+      "manufacturer": "Sienar Fleet Systems",
+      "manufacturers": [
+        "Sienar Fleet Systems"
+      ],
+      "crew": "1",
+      "passengers": "0",
+      "consumables": "5 days",
+      "cargo_capacity": "150",
+      "max_atmosphering_speed": "1200",
+      "hyperdrive_rating": "1.0",
+      "MGLT": "105",
+      "cost_in_credits": "unknown",
+      "starship_class": "Starfighter",
+      "films": [
+        "https://swapi.py4e.com/api/films/1/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/13/"
+    },
+    {
+      "name": "Executor",
+      "model": "Executor-class star dreadnought",
+      "manufacturer": "Kuat Drive Yards, Fondor Shipyards",
+      "manufacturers": [
+        "Kuat Drive Yards",
+        "Fondor Shipyards"
+      ],
+      "crew": "279,144",
+      "passengers": "38000",
+      "consumables": "6 years",
+      "cargo_capacity": "250000000",
+      "max_atmosphering_speed": "n/a",
+      "hyperdrive_rating": "2.0",
+      "MGLT": "40",
+      "cost_in_credits": "1143350000",
+      "starship_class": "Star dreadnought",
+      "films": [
+        "https://swapi.py4e.com/api/films/2/",
+        "https://swapi.py4e.com/api/films/3/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/15/"
+    },
+    {
+      "name": "Rebel transport",
+      "model": "GR-75 medium transport",
+      "manufacturer": "Gallofree Yards, Inc.",
+      "manufacturers": [
+        "Gallofree Yards",
+        "Inc."
+      ],
+      "crew": "6",
+      "passengers": "90",
+      "consumables": "6 months",
+      "cargo_capacity": "19000000",
+      "max_atmosphering_speed": "650",
+      "hyperdrive_rating": "4.0",
+      "MGLT": "20",
+      "cost_in_credits": "unknown",
+      "starship_class": "Medium transport",
+      "films": [
+        "https://swapi.py4e.com/api/films/2/",
+        "https://swapi.py4e.com/api/films/3/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/17/"
+    },
+    {
+      "name": "Slave 1",
+      "model": "Firespray-31-class patrol and attack",
+      "manufacturer": "Kuat Systems Engineering",
+      "manufacturers": [
+        "Kuat Systems Engineering"
+      ],
+      "crew": "1",
+      "passengers": "6",
+      "consumables": "1 month",
+      "cargo_capacity": "70000",
+      "max_atmosphering_speed": "1000",
+      "hyperdrive_rating": "3.0",
+      "MGLT": "70",
+      "cost_in_credits": "unknown",
+      "starship_class": "Patrol craft",
+      "films": [
+        "https://swapi.py4e.com/api/films/2/",
+        "https://swapi.py4e.com/api/films/5/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/21/"
+    },
+    {
+      "name": "Imperial shuttle",
+      "model": "Lambda-class T-4a shuttle",
+      "manufacturer": "Sienar Fleet Systems",
+      "manufacturers": [
+        "Sienar Fleet Systems"
+      ],
+      "crew": "6",
+      "passengers": "20",
+      "consumables": "2 months",
+      "cargo_capacity": "80000",
+      "max_atmosphering_speed": "850",
+      "hyperdrive_rating": "1.0",
+      "MGLT": "50",
+      "cost_in_credits": "240000",
+      "starship_class": "Armed government transport",
+      "films": [
+        "https://swapi.py4e.com/api/films/2/",
+        "https://swapi.py4e.com/api/films/3/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/22/"
+    },
+    {
+      "name": "EF76 Nebulon-B escort frigate",
+      "model": "EF76 Nebulon-B escort frigate",
+      "manufacturer": "Kuat Drive Yards",
+      "manufacturers": [
+        "Kuat Drive Yards"
+      ],
+      "crew": "854",
+      "passengers": "75",
+      "consumables": "2 years",
+      "cargo_capacity": "6000000",
+      "max_atmosphering_speed": "800",
+      "hyperdrive_rating": "2.0",
+      "MGLT": "40",
+      "cost_in_credits": "8500000",
+      "starship_class": "Escort ship",
+      "films": [
+        "https://swapi.py4e.com/api/films/2/",
+        "https://swapi.py4e.com/api/films/3/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/23/"
+    },
+    {
+      "name": "Calamari Cruiser",
+      "model": "MC80 Liberty type Star Cruiser",
+      "manufacturer": "Mon Calamari shipyards",
+      "manufacturers": [
+        "Mon Calamari shipyards"
+      ],
+      "crew": "5400",
+      "passengers": "1200",
+      "consumables": "2 years",
+      "cargo_capacity": "unknown",
+      "max_atmosphering_speed": "n/a",
+      "hyperdrive_rating": "1.0",
+      "MGLT": "60",
+      "cost_in_credits": "104000000",
+      "starship_class": "Star Cruiser",
+      "films": [
+        "https://swapi.py4e.com/api/films/3/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/27/"
+    },
+    {
+      "name": "A-wing",
+      "model": "RZ-1 A-wing Interceptor",
+      "manufacturer": "Alliance Underground Engineering, Incom Corporation",
+      "manufacturers": [
+        "Alliance Underground Engineering",
+        "Incom Corporation"
+      ],
+      "crew": "1",
+      "passengers": "0",
+      "consumables": "1 week",
+      "cargo_capacity": "40",
+      "max_atmosphering_speed": "1300",
+      "hyperdrive_rating": "1.0",
+      "MGLT": "120",
+      "cost_in_credits": "175000",
+      "starship_class": "Starfighter",
+      "films": [
+        "https://swapi.py4e.com/api/films/3/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/28/"
+    },
+    {
+      "name": "B-wing",
+      "model": "A/SF-01 B-wing starfighter",
+      "manufacturer": "Slayn & Korpil",
+      "manufacturers": [
+        "Slayn & Korpil"
+      ],
+      "crew": "1",
+      "passengers": "0",
+      "consumables": "1 week",
+      "cargo_capacity": "45",
+      "max_atmosphering_speed": "950",
+      "hyperdrive_rating": "2.0",
+      "MGLT": "91",
+      "cost_in_credits": "220000",
+      "starship_class": "Assault Starfighter",
+      "films": [
+        "https://swapi.py4e.com/api/films/3/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/29/"
+    },
+    {
+      "name": "Republic Cruiser",
+      "model": "Consular-class cruiser",
+      "manufacturer": "Corellian Engineering Corporation",
+      "manufacturers": [
+        "Corellian Engineering Corporation"
+      ],
+      "crew": "9",
+      "passengers": "16",
+      "consumables": "unknown",
+      "cargo_capacity": "unknown",
+      "max_atmosphering_speed": "900",
+      "hyperdrive_rating": "2.0",
+      "MGLT": "unknown",
+      "cost_in_credits": "unknown",
+      "starship_class": "Space cruiser",
+      "films": [
+        "https://swapi.py4e.com/api/films/4/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/31/"
+    },
+    {
+      "name": "Droid control ship",
+      "model": "Lucrehulk-class Droid Control Ship",
+      "manufacturer": "Hoersch-Kessel Drive, Inc.",
+      "manufacturers": [
+        "Hoersch-Kessel Drive",
+        "Inc."
+      ],
+      "crew": "175",
+      "passengers": "139000",
+      "consumables": "500 days",
+      "cargo_capacity": "4000000000",
+      "max_atmosphering_speed": "n/a",
+      "hyperdrive_rating": "2.0",
+      "MGLT": "unknown",
+      "cost_in_credits": "unknown",
+      "starship_class": "Droid control ship",
+      "films": [
+        "https://swapi.py4e.com/api/films/4/",
+        "https://swapi.py4e.com/api/films/5/",
+        "https://swapi.py4e.com/api/films/6/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/32/"
+    },
+    {
+      "name": "Naboo fighter",
+      "model": "N-1 starfighter",
+      "manufacturer": "Theed Palace Space Vessel Engineering Corps",
+      "manufacturers": [
+        "Theed Palace Space Vessel Engineering Corps"
+      ],
+      "crew": "1",
+      "passengers": "0",
+      "consumables": "7 days",
+      "cargo_capacity": "65",
+      "max_atmosphering_speed": "1100",
+      "hyperdrive_rating": "1.0",
+      "MGLT": "unknown",
+      "cost_in_credits": "200000",
+      "starship_class": "Starfighter",
+      "films": [
+        "https://swapi.py4e.com/api/films/4/",
+        "https://swapi.py4e.com/api/films/5/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/39/"
+    },
+    {
+      "name": "Naboo Royal Starship",
+      "model": "J-type 327 Nubian royal starship",
+      "manufacturer": "Theed Palace Space Vessel Engineering Corps, Nubia Star Drives",
+      "manufacturers": [
+        "Theed Palace Space Vessel Engineering Corps",
+        "Nubia Star Drives"
+      ],
+      "crew": "8",
+      "passengers": "unknown",
+      "consumables": "unknown",
+      "cargo_capacity": "unknown",
+      "max_atmosphering_speed": "920",
+      "hyperdrive_rating": "1.8",
+      "MGLT": "unknown",
+      "cost_in_credits": "unknown",
+      "starship_class": "yacht",
+      "films": [
+        "https://swapi.py4e.com/api/films/4/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/40/"
+    },
+    {
+      "name": "Scimitar",
+      "model": "Star Courier",
+      "manufacturer": "Republic Sienar Systems",
+      "manufacturers": [
+        "Republic Sienar Systems"
+      ],
+      "crew": "1",
+      "passengers": "6",
+      "consumables": "30 days",
+      "cargo_capacity": "2500000",
+      "max_atmosphering_speed": "1180",
+      "hyperdrive_rating": "1.5",
+      "MGLT": "unknown",
+      "cost_in_credits": "55000000",
+      "starship_class": "Space Transport",
+      "films": [
+        "https://swapi.py4e.com/api/films/4/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/41/"
+    },
+    {
+      "name": "J-type diplomatic barge",
+      "model": "J-type diplomatic barge",
+      "manufacturer": "Theed Palace Space Vessel Engineering Corps, Nubia Star Drives",
+      "manufacturers": [
+        "Theed Palace Space Vessel Engineering Corps",
+        "Nubia Star Drives"
+      ],
+      "crew": "5",
+      "passengers": "10",
+      "consumables": "1 year",
+      "cargo_capacity": "unknown",
+      "max_atmosphering_speed": "2000",
+      "hyperdrive_rating": "0.7",
+      "MGLT": "unknown",
+      "cost_in_credits": "2000000",
+      "starship_class": "Diplomatic barge",
+      "films": [
+        "https://swapi.py4e.com/api/films/5/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/43/"
+    },
+    {
+      "name": "AA-9 Coruscant freighter",
+      "model": "Botajef AA-9 Freighter-Liner",
+      "manufacturer": "Botajef Shipyards",
+      "manufacturers": [
+        "Botajef Shipyards"
+      ],
+      "crew": "unknown",
+      "passengers": "30000",
+      "consumables": "unknown",
+      "cargo_capacity": "unknown",
+      "max_atmosphering_speed": "unknown",
+      "hyperdrive_rating": "unknown",
+      "MGLT": "unknown",
+      "cost_in_credits": "unknown",
+      "starship_class": "freighter",
+      "films": [
+        "https://swapi.py4e.com/api/films/5/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/47/"
+    },
+    {
+      "name": "Jedi starfighter",
+      "model": "Delta-7 Aethersprite-class interceptor",
+      "manufacturer": "Kuat Systems Engineering",
+      "manufacturers": [
+        "Kuat Systems Engineering"
+      ],
+      "crew": "1",
+      "passengers": "0",
+      "consumables": "7 days",
+      "cargo_capacity": "60",
+      "max_atmosphering_speed": "1150",
+      "hyperdrive_rating": "1.0",
+      "MGLT": "unknown",
+      "cost_in_credits": "180000",
+      "starship_class": "Starfighter",
+      "films": [
+        "https://swapi.py4e.com/api/films/5/",
+        "https://swapi.py4e.com/api/films/6/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/48/"
+    },
+    {
+      "name": "H-type Nubian yacht",
+      "model": "H-type Nubian yacht",
+      "manufacturer": "Theed Palace Space Vessel Engineering Corps",
+      "manufacturers": [
+        "Theed Palace Space Vessel Engineering Corps"
+      ],
+      "crew": "4",
+      "passengers": "unknown",
+      "consumables": "unknown",
+      "cargo_capacity": "unknown",
+      "max_atmosphering_speed": "8000",
+      "hyperdrive_rating": "0.9",
+      "MGLT": "unknown",
+      "cost_in_credits": "unknown",
+      "starship_class": "yacht",
+      "films": [
+        "https://swapi.py4e.com/api/films/5/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/49/"
+    },
+    {
+      "name": "Republic Assault ship",
+      "model": "Acclamator I-class assault ship",
+      "manufacturer": "Rothana Heavy Engineering",
+      "manufacturers": [
+        "Rothana Heavy Engineering"
+      ],
+      "crew": "700",
+      "passengers": "16000",
+      "consumables": "2 years",
+      "cargo_capacity": "11250000",
+      "max_atmosphering_speed": "unknown",
+      "hyperdrive_rating": "0.6",
+      "MGLT": "unknown",
+      "cost_in_credits": "unknown",
+      "starship_class": "assault ship",
+      "films": [
+        "https://swapi.py4e.com/api/films/5/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/52/"
+    },
+    {
+      "name": "Solar Sailer",
+      "model": "Punworcca 116-class interstellar sloop",
+      "manufacturer": "Huppla Pasa Tisc Shipwrights Collective",
+      "manufacturers": [
+        "Huppla Pasa Tisc Shipwrights Collective"
+      ],
+      "crew": "3",
+      "passengers": "11",
+      "consumables": "7 days",
+      "cargo_capacity": "240",
+      "max_atmosphering_speed": "1600",
+      "hyperdrive_rating": "1.5",
+      "MGLT": "unknown",
+      "cost_in_credits": "35700",
+      "starship_class": "yacht",
+      "films": [
+        "https://swapi.py4e.com/api/films/5/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/58/"
+    },
+    {
+      "name": "Trade Federation cruiser",
+      "model": "Providence-class carrier/destroyer",
+      "manufacturer": "Rendili StarDrive, Free Dac Volunteers Engineering corps.",
+      "manufacturers": [
+        "Rendili StarDrive",
+        "Free Dac Volunteers Engineering corps."
+      ],
+      "crew": "600",
+      "passengers": "48247",
+      "consumables": "4 years",
+      "cargo_capacity": "50000000",
+      "max_atmosphering_speed": "1050",
+      "hyperdrive_rating": "1.5",
+      "MGLT": "unknown",
+      "cost_in_credits": "125000000",
+      "starship_class": "capital ship",
+      "films": [
+        "https://swapi.py4e.com/api/films/6/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/59/"
+    },
+    {
+      "name": "Theta-class T-2c shuttle",
+      "model": "Theta-class T-2c shuttle",
+      "manufacturer": "Cygnus Spaceworks",
+      "manufacturers": [
+        "Cygnus Spaceworks"
+      ],
+      "crew": "5",
+      "passengers": "16",
+      "consumables": "56 days",
+      "cargo_capacity": "50000",
+      "max_atmosphering_speed": "2000",
+      "hyperdrive_rating": "1.0",
+      "MGLT": "unknown",
+      "cost_in_credits": "1000000",
+      "starship_class": "transport",
+      "films": [
+        "https://swapi.py4e.com/api/films/6/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/61/"
+    },
+    {
+      "name": "Republic attack cruiser",
+      "model": "Senator-class Star Destroyer",
+      "manufacturer": "Kuat Drive Yards, Allanteen Six shipyards",
+      "manufacturers": [
+        "Kuat Drive Yards",
+        "Allanteen Six shipyards"
+      ],
+      "crew": "7400",
+      "passengers": "2000",
+      "consumables": "2 years",
+      "cargo_capacity": "20000000",
+      "max_atmosphering_speed": "975",
+      "hyperdrive_rating": "1.0",
+      "MGLT": "unknown",
+      "cost_in_credits": "59000000",
+      "starship_class": "star destroyer",
+      "films": [
+        "https://swapi.py4e.com/api/films/6/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/63/"
+    },
+    {
+      "name": "Naboo star skiff",
+      "model": "J-type star skiff",
+      "manufacturer": "Theed Palace Space Vessel Engineering Corps/Nubia Star Drives, Incorporated",
+      "manufacturers": [
+        "Theed Palace Space Vessel Engineering Corps/Nubia Star Drives",
+        "Incorporated"
+      ],
+      "crew": "3",
+      "passengers": "3",
+      "consumables": "unknown",
+      "cargo_capacity": "unknown",
+      "max_atmosphering_speed": "1050",
+      "hyperdrive_rating": "0.5",
+      "MGLT": "unknown",
+      "cost_in_credits": "unknown",
+      "starship_class": "yacht",
+      "films": [
+        "https://swapi.py4e.com/api/films/6/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/64/"
+    },
+    {
+      "name": "Jedi Interceptor",
+      "model": "Eta-2 Actis-class light interceptor",
+      "manufacturer": "Kuat Systems Engineering",
+      "manufacturers": [
+        "Kuat Systems Engineering"
+      ],
+      "crew": "1",
+      "passengers": "0",
+      "consumables": "2 days",
+      "cargo_capacity": "60",
+      "max_atmosphering_speed": "1500",
+      "hyperdrive_rating": "1.0",
+      "MGLT": "unknown",
+      "cost_in_credits": "320000",
+      "starship_class": "starfighter",
+      "films": [
+        "https://swapi.py4e.com/api/films/6/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/65/"
+    },
+    {
+      "name": "arc-170",
+      "model": "Aggressive Reconnaissance-170 starfighte",
+      "manufacturer": "Incom Corporation, Subpro Corporation",
+      "manufacturers": [
+        "Incom Corporation",
+        "Subpro Corporation"
+      ],
+      "crew": "3",
+      "passengers": "0",
+      "consumables": "5 days",
+      "cargo_capacity": "110",
+      "max_atmosphering_speed": "1000",
+      "hyperdrive_rating": "1.0",
+      "MGLT": "100",
+      "cost_in_credits": "155000",
+      "starship_class": "starfighter",
+      "films": [
+        "https://swapi.py4e.com/api/films/6/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/66/"
+    },
+    {
+      "name": "Banking clan frigte",
+      "model": "Munificent-class star frigate",
+      "manufacturer": "Hoersch-Kessel Drive, Inc, Gwori Revolutionary Industries",
+      "manufacturers": [
+        "Hoersch-Kessel Drive",
+        "Inc",
+        "Gwori Revolutionary Industries"
+      ],
+      "crew": "200",
+      "passengers": "unknown",
+      "consumables": "2 years",
+      "cargo_capacity": "40000000",
+      "max_atmosphering_speed": "unknown",
+      "hyperdrive_rating": "1.0",
+      "MGLT": "unknown",
+      "cost_in_credits": "57000000",
+      "starship_class": "cruiser",
+      "films": [
+        "https://swapi.py4e.com/api/films/6/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/68/"
+    },
+    {
+      "name": "Belbullab-22 starfighter",
+      "model": "Belbullab-22 starfighter",
+      "manufacturer": "Feethan Ottraw Scalable Assemblies",
+      "manufacturers": [
+        "Feethan Ottraw Scalable Assemblies"
+      ],
+      "crew": "1",
+      "passengers": "0",
+      "consumables": "7 days",
+      "cargo_capacity": "140",
+      "max_atmosphering_speed": "1100",
+      "hyperdrive_rating": "6",
+      "MGLT": "unknown",
+      "cost_in_credits": "168000",
+      "starship_class": "starfighter",
+      "films": [
+        "https://swapi.py4e.com/api/films/6/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/74/"
+    },
+    {
+      "name": "V-wing",
+      "model": "Alpha-3 Nimbus-class V-wing starfighter",
+      "manufacturer": "Kuat Systems Engineering",
+      "manufacturers": [
+        "Kuat Systems Engineering"
+      ],
+      "crew": "1",
+      "passengers": "0",
+      "consumables": "15 hours",
+      "cargo_capacity": "60",
+      "max_atmosphering_speed": "1050",
+      "hyperdrive_rating": "1.0",
+      "MGLT": "unknown",
+      "cost_in_credits": "102500",
+      "starship_class": "starfighter",
+      "films": [
+        "https://swapi.py4e.com/api/films/6/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/75/"
+    },
+    {
+      "name": "X-wing",
+      "model": "T-70 X-wing",
+      "manufacturer": "Incom Corporation",
+      "manufacturers": [
+        "Incom Corporation"
+      ],
+      "crew": "1",
+      "passengers": "0",
+      "consumables": "1 week",
+      "cargo_capacity": "110",
+      "max_atmosphering_speed": "1100",
+      "hyperdrive_rating": "1.0",
+      "MGLT": "110",
+      "cost_in_credits": "200000",
+      "starship_class": "Starfighter",
+      "films": [
+        "https://swapi.py4e.com/api/films/7/"
+      ],
+      "url": "https://swapi.py4e.com/api/starships/77/"
+    }
+  ],
+  "films": [
+    {
+      "title": "A New Hope",
+      "episode_id": 4,
+      "director": "George Lucas",
+      "producer": "Gary Kurtz, Rick McCallum",
+      "release_date": "1977-05-25",
+      "opening_crawl": "It is a period of civil war.\r\nRebel spaceships, striking\r\nfrom a hidden base, have won\r\ntheir first victory against\r\nthe evil Galactic Empire.\r\n\r\nDuring the battle, Rebel\r\nspies managed to steal secret\r\nplans to the Empire's\r\nultimate weapon, the DEATH\r\nSTAR, an armored space\r\nstation with enough power\r\nto destroy an entire planet.\r\n\r\nPursued by the Empire's\r\nsinister agents, Princess\r\nLeia races home aboard her\r\nstarship, custodian of the\r\nstolen plans that can save her\r\npeople and restore\r\nfreedom to the galaxy....",
+      "url": "https://swapi.py4e.com/api/films/1/"
+    },
+    {
+      "title": "The Empire Strikes Back",
+      "episode_id": 5,
+      "director": "Irvin Kershner",
+      "producer": "Gary Kurtz, Rick McCallum",
+      "release_date": "1980-05-17",
+      "opening_crawl": "It is a dark time for the\r\nRebellion. Although the Death\r\nStar has been destroyed,\r\nImperial troops have driven the\r\nRebel forces from their hidden\r\nbase and pursued them across\r\nthe galaxy.\r\n\r\nEvading the dreaded Imperial\r\nStarfleet, a group of freedom\r\nfighters led by Luke Skywalker\r\nhas established a new secret\r\nbase on the remote ice world\r\nof Hoth.\r\n\r\nThe evil lord Darth Vader,\r\nobsessed with finding young\r\nSkywalker, has dispatched\r\nthousands of remote probes into\r\nthe far reaches of space....",
+      "url": "https://swapi.py4e.com/api/films/2/"
+    },
+    {
+      "title": "Return of the Jedi",
+      "episode_id": 6,
+      "director": "Richard Marquand",
+      "producer": "Howard G. Kazanjian, George Lucas, Rick McCallum",
+      "release_date": "1983-05-25",
+      "opening_crawl": "Luke Skywalker has returned to\r\nhis home planet of Tatooine in\r\nan attempt to rescue his\r\nfriend Han Solo from the\r\nclutches of the vile gangster\r\nJabba the Hutt.\r\n\r\nLittle does Luke know that the\r\nGALACTIC EMPIRE has secretly\r\nbegun construction on a new\r\narmored space station even\r\nmore powerful than the first\r\ndreaded Death Star.\r\n\r\nWhen completed, this ultimate\r\nweapon will spell certain doom\r\nfor the small band of rebels\r\nstruggling to restore freedom\r\nto the galaxy...",
+      "url": "https://swapi.py4e.com/api/films/3/"
+    },
+    {
+      "title": "The Phantom Menace",
+      "episode_id": 1,
+      "director": "George Lucas",
+      "producer": "Rick McCallum",
+      "release_date": "1999-05-19",
+      "opening_crawl": "Turmoil has engulfed the\r\nGalactic Republic. The taxation\r\nof trade routes to outlying star\r\nsystems is in dispute.\r\n\r\nHoping to resolve the matter\r\nwith a blockade of deadly\r\nbattleships, the greedy Trade\r\nFederation has stopped all\r\nshipping to the small planet\r\nof Naboo.\r\n\r\nWhile the Congress of the\r\nRepublic endlessly debates\r\nthis alarming chain of events,\r\nthe Supreme Chancellor has\r\nsecretly dispatched two Jedi\r\nKnights, the guardians of\r\npeace and justice in the\r\ngalaxy, to settle the conflict....",
+      "url": "https://swapi.py4e.com/api/films/4/"
+    },
+    {
+      "title": "Attack of the Clones",
+      "episode_id": 2,
+      "director": "George Lucas",
+      "producer": "Rick McCallum",
+      "release_date": "2002-05-16",
+      "opening_crawl": "There is unrest in the Galactic\r\nSenate. Several thousand solar\r\nsystems have declared their\r\nintentions to leave the Republic.\r\n\r\nThis separatist movement,\r\nunder the leadership of the\r\nmysterious Count Dooku, has\r\nmade it difficult for the limited\r\nnumber of Jedi Knights to maintain \r\npeace and order in the galaxy.\r\n\r\nSenator Amidala, the former\r\nQueen of Naboo, is returning\r\nto the Galactic Senate to vote\r\non the critical issue of creating\r\nan ARMY OF THE REPUBLIC\r\nto assist the overwhelmed\r\nJedi....",
+      "url": "https://swapi.py4e.com/api/films/5/"
+    },
+    {
+      "title": "Revenge of the Sith",
+      "episode_id": 3,
+      "director": "George Lucas",
+      "producer": "Rick McCallum",
+      "release_date": "2005-05-19",
+      "opening_crawl": "War! The Republic is crumbling\r\nunder attacks by the ruthless\r\nSith Lord, Count Dooku.\r\nThere are heroes on both sides.\r\nEvil is everywhere.\r\n\r\nIn a stunning move, the\r\nfiendish droid leader, General\r\nGrievous, has swept into the\r\nRepublic capital and kidnapped\r\nChancellor Palpatine, leader of\r\nthe Galactic Senate.\r\n\r\nAs the Separatist Droid Army\r\nattempts to flee the besieged\r\ncapital with their valuable\r\nhostage, two Jedi Knights lead a\r\ndesperate mission to rescue the\r\ncaptive Chancellor....",
+      "url": "https://swapi.py4e.com/api/films/6/"
+    },
+    {
+      "title": "The Force Awakens",
+      "episode_id": 7,
+      "director": "J. J. Abrams",
+      "producer": "Kathleen Kennedy, J. J. Abrams, Bryan Burk",
+      "release_date": "2015-12-11",
+      "opening_crawl": "Luke Skywalker has vanished.\r\nIn his absence, the sinister\r\nFIRST ORDER has risen from\r\nthe ashes of the Empire\r\nand will not rest until\r\nSkywalker, the last Jedi,\r\nhas been destroyed.\r\n \r\nWith the support of the\r\nREPUBLIC, General Leia Organa\r\nleads a brave RESISTANCE.\r\nShe is desperate to find her\r\nbrother Luke and gain his\r\nhelp in restoring peace and\r\njustice to the galaxy.\r\n \r\nLeia has sent her most daring\r\npilot on a secret mission\r\nto Jakku, where an old ally\r\nhas discovered a clue to\r\nLuke's whereabouts....",
+      "url": "https://swapi.py4e.com/api/films/7/"
+    }
+  ]
+}

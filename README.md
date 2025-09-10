@@ -14,7 +14,7 @@ User friendly endpoint `/graphql` redirects to the above mentioned raw function 
 Original Star Wars API https://swapi-graphql.netlify.app/graphql doesn't return full data for many field, such as, `manufacturers`, `crew`, `passengers` and `consumables` etc. Also the old url https://swapi-graphql.netlify.app/.netlify/functions/index is buggy, it redirects to /graphql and loses POST json query.
 
 
-This project wraps the SWAPI REST mirror (`https://swapi.py4e.com/api`) with a GraphQL endpoint, exposing starship data (including `manufacturers`, `crew`, `passengers`, `consumables`, etc.).
+This project wraps the SWAPI REST mirror (`https://swapi.py4e.com/api`) with a GraphQL endpoint, exposing starship data (including `manufacturers`, `crew`, `passengers`, `consumables`, etc.). swapi.dev and that mirror seem to have expired ssl certificates. This make ios emulator failing to fetch from that. But my graphql endpoint bypasses that issue, so you can use my api in ios too.
 
 **Note:** This project hasn't been tested fully.  
 
