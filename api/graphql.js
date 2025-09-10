@@ -1,6 +1,6 @@
-// api/graphql.js - Vercel serverless ESM function
-import { ApolloServer } from "apollo-server-micro";
-import { gql } from "apollo-server-core";
+// api/graphql.js — @apollo/server v5 serverless handler for Vercel
+import { ApolloServer } from "@apollo/server";
+import { startServerAndCreateHandler } from "@apollo/server/standalone";
 import LRU from "lru-cache";
 import fs from "fs/promises";
 import path from "path";
@@ -18,7 +18,7 @@ try {
   console.warn("Could not load fallback.json:", e.message);
 }
 
-const typeDefs = gql`
+const typeDefs = `
   type Starship {
     id: ID
     name: String
@@ -76,6 +76,7 @@ async function cachedFetch(url) {
     console.warn("REST fetch failed for", url, err.message);
 
     let fallbackMatch = null;
+
     fallbackMatch = FALLBACK_DATA.find(
       s =>
         (s.url &&
@@ -92,25 +93,18 @@ async function cachedFetch(url) {
         const name = params.get("search");
         if (name)
           fallbackMatch = FALLBACK_DATA.find(
-            s =>
-              s.name &&
-              s.name.toLowerCase() === decodeURIComponent(name).toLowerCase()
+            s => s.name && s.name.toLowerCase() === decodeURIComponent(name).toLowerCase()
           );
       } catch (e) {}
     }
 
-    if (!fallbackMatch && FALLBACK_DATA.length > 0)
-      fallbackMatch = FALLBACK_DATA[0];
+    if (!fallbackMatch && FALLBACK_DATA.length > 0) fallbackMatch = FALLBACK_DATA[0];
 
     if (fallbackMatch) {
       const isCollection =
         url.includes("/starships/") &&
-        (url.includes("?") ||
-          url.endsWith("/starships/") ||
-          url.includes("/starships/?"));
-      const faux = isCollection
-        ? { results: [fallbackMatch] }
-        : fallbackMatch;
+        (url.includes("?") || url.endsWith("/starships/") || url.includes("/starships/?"));
+      const faux = isCollection ? { results: [fallbackMatch] } : fallbackMatch;
       return { json: faux, warning: "served-from-fallback-json" };
     }
 
@@ -127,9 +121,7 @@ function mapRestStarship(rest, warning = null) {
     model: r.model || null,
     starship_class: r.starship_class || null,
     manufacturer_raw: r.manufacturer || null,
-    manufacturers: r.manufacturer
-      ? r.manufacturer.split(",").map(s => s.trim())
-      : null,
+    manufacturers: r.manufacturer ? r.manufacturer.split(",").map(s => s.trim()) : null,
     length: r.length || null,
     crew: r.crew || null,
     passengers: r.passengers || null,
@@ -150,15 +142,11 @@ const resolvers = {
     allStarships: async (_, { page = 1 }) => {
       const url = `${REST_BASE}/starships/?page=${page}`;
       const { json, warning } = await cachedFetch(url);
-      const edges = (json.results || []).map(r => ({
-        node: mapRestStarship(r, warning)
-      }));
+      const edges = (json.results || []).map(r => ({ node: mapRestStarship(r, warning) }));
       return { edges, count: json.count || edges.length };
     },
     starshipById: async (_, { id }) => {
-      const url = String(id).startsWith("http")
-        ? id
-        : `${REST_BASE}/starships/${id}/`;
+      const url = String(id).startsWith("http") ? id : `${REST_BASE}/starships/${id}/`;
       const { json, warning } = await cachedFetch(url);
       return mapRestStarship(json, warning);
     },
@@ -171,29 +159,26 @@ const resolvers = {
   }
 };
 
-// Create Apollo server - disable persistedQueries to avoid unbounded cache warning
-// Create Apollo server - disable persistedQueries to avoid unbounded cache warning
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  introspection: true,
-  persistedQueries: false,
+  introspection: true
 });
 
-let serverHandler;
-export default async function handler(req, res) {
-  if (!serverHandler) {
-    await server.start();
-    serverHandler = server.createHandler({
-      cors: {
-        origin: '*',  // allow all domains
-        credentials: true,
-        allowedHeaders: ['Content-Type', 'Authorization'],
-        methods: ['GET', 'POST', 'OPTIONS'],
-      },
-    });
+const handler = await startServerAndCreateHandler(server, {
+  context: async ({ req }) => ({ /* add context here if needed */ }),
+  cors: {
+    origin: '*',
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    methods: ['GET', 'POST', 'OPTIONS']
   }
-  return serverHandler(req, res);
-}
+});
 
-export const config = { api: { bodyParser: false } };
+export default handler;
+
+export const config = {
+  api: {
+    bodyParser: false
+  }
+};

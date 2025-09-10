@@ -1,19 +1,18 @@
-// index.js (standalone ESM server on /graphql)
-// Node >=18 recommended. Uses global fetch.
+// index.js - Apollo Server v5 standalone (local dev)
+// Node 20+ required
 
-import { ApolloServer, gql } from "apollo-server";
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
 import LRU from "lru-cache";
 import fs from "fs/promises";
 import path from "path";
 
-const REST_BASE = "https://swapi.py4e.com/api"; //in case rest api is down, fallback to fallback.json
+const REST_BASE = "https://swapi.py4e.com/api";
 const PORT = process.env.PORT || 4000;
 const FALLBACK_PATH = path.join(process.cwd(), "fallback.json");
 
-// small in-memory cache
 const cache = new LRU({ max: 500, ttl: 1000 * 60 * 5 });
 
-// load fallback.json (optional) at startup
 let FALLBACK_DATA = [];
 try {
   const raw = await fs.readFile(FALLBACK_PATH, "utf8").catch(() => null);
@@ -23,8 +22,7 @@ try {
   console.warn("Could not load fallback.json:", e.message);
 }
 
-// GraphQL schema (include dataWarning and full fields)
-const typeDefs = gql`
+const typeDefs = `
   type Starship {
     id: ID
     name: String
@@ -65,10 +63,6 @@ const typeDefs = gql`
   }
 `;
 
-/**
- * cachedFetch: Try live REST; on error fall back to fallback.json entries.
- * Returns { json, warning } where warning is null or a string if fallback used.
- */
 async function cachedFetch(url) {
   const key = url;
   if (cache.has(key)) return { json: cache.get(key), warning: null };
@@ -85,30 +79,37 @@ async function cachedFetch(url) {
   } catch (err) {
     console.warn("REST fetch failed for", url, err.message);
 
-    // Attempt to locate fallback entry
     let fallbackMatch = null;
 
-    // If querying a single resource URL, try exact match by url
-    fallbackMatch = FALLBACK_DATA.find(s => s.url && url.endsWith(s.url.replace("https://swapi.py4e.com/api", "").replace(/^\/+/, "")) || url === s.url);
+    // Try exact url match (resource)
+    fallbackMatch = FALLBACK_DATA.find(
+      s =>
+        (s.url &&
+          url.endsWith(
+            s.url.replace("https://swapi.py4e.com/api", "").replace(/^\/+/, "")
+          )) ||
+        url === s.url
+    );
 
-    // If search URL, match by name param
+    // If searching by name, try to match fallback by name
     if (!fallbackMatch && url.includes("?search=")) {
       const qp = url.split("?")[1];
       try {
         const params = new URLSearchParams(qp);
         const name = params.get("search");
-        if (name) {
-          fallbackMatch = FALLBACK_DATA.find(s => s.name && s.name.toLowerCase() === decodeURIComponent(name).toLowerCase());
-        }
-      } catch (e) { /* ignore */ }
+        if (name)
+          fallbackMatch = FALLBACK_DATA.find(
+            s => s.name && s.name.toLowerCase() === decodeURIComponent(name).toLowerCase()
+          );
+      } catch (e) {}
     }
 
-    // final fallback: nothing or first entry (optional)
     if (!fallbackMatch && FALLBACK_DATA.length > 0) fallbackMatch = FALLBACK_DATA[0];
 
     if (fallbackMatch) {
-      // If the original URL was a collection (results), present a fake connection when needed
-      const isCollection = url.includes("/starships/") && url.includes("?") || url.endsWith("/starships/") || url.includes("/starships/?");
+      const isCollection =
+        url.includes("/starships/") &&
+        (url.includes("?") || url.endsWith("/starships/") || url.includes("/starships/?"));
       const faux = isCollection ? { results: [fallbackMatch] } : fallbackMatch;
       return { json: faux, warning: "served-from-fallback-json" };
     }
@@ -164,10 +165,14 @@ const resolvers = {
   }
 };
 
-const server = new ApolloServer({ typeDefs, resolvers, introspection: true });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  introspection: true
+});
 
-// Start server and serve GraphQL at /graphql
-(async () => {
-  const { url } = await server.listen({ port: PORT, path: "/graphql" });
-  console.log(`🚀 GraphQL server ready at ${url} (path /graphql)`);
-})();
+const { url } = await startStandaloneServer(server, {
+  listen: { port: PORT },
+  // startStandaloneServer handles CORS for dev by default
+});
+console.log(`🚀 GraphQL server ready at ${url} (path /graphql)`);
