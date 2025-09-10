@@ -76,22 +76,41 @@ async function cachedFetch(url) {
     console.warn("REST fetch failed for", url, err.message);
 
     let fallbackMatch = null;
-    fallbackMatch = FALLBACK_DATA.find(s => s.url && url.endsWith(s.url.replace("https://swapi.py4e.com/api", "").replace(/^\/+/, "")) || url === s.url);
+    fallbackMatch = FALLBACK_DATA.find(
+      s =>
+        (s.url &&
+          url.endsWith(
+            s.url.replace("https://swapi.py4e.com/api", "").replace(/^\/+/, "")
+          )) ||
+        url === s.url
+    );
 
     if (!fallbackMatch && url.includes("?search=")) {
       const qp = url.split("?")[1];
       try {
         const params = new URLSearchParams(qp);
         const name = params.get("search");
-        if (name) fallbackMatch = FALLBACK_DATA.find(s => s.name && s.name.toLowerCase() === decodeURIComponent(name).toLowerCase());
+        if (name)
+          fallbackMatch = FALLBACK_DATA.find(
+            s =>
+              s.name &&
+              s.name.toLowerCase() === decodeURIComponent(name).toLowerCase()
+          );
       } catch (e) {}
     }
 
-    if (!fallbackMatch && FALLBACK_DATA.length > 0) fallbackMatch = FALLBACK_DATA[0];
+    if (!fallbackMatch && FALLBACK_DATA.length > 0)
+      fallbackMatch = FALLBACK_DATA[0];
 
     if (fallbackMatch) {
-      const isCollection = url.includes("/starships/") && (url.includes("?") || url.endsWith("/starships/") || url.includes("/starships/?"));
-      const faux = isCollection ? { results: [fallbackMatch] } : fallbackMatch;
+      const isCollection =
+        url.includes("/starships/") &&
+        (url.includes("?") ||
+          url.endsWith("/starships/") ||
+          url.includes("/starships/?"));
+      const faux = isCollection
+        ? { results: [fallbackMatch] }
+        : fallbackMatch;
       return { json: faux, warning: "served-from-fallback-json" };
     }
 
@@ -108,7 +127,9 @@ function mapRestStarship(rest, warning = null) {
     model: r.model || null,
     starship_class: r.starship_class || null,
     manufacturer_raw: r.manufacturer || null,
-    manufacturers: r.manufacturer ? r.manufacturer.split(",").map(s => s.trim()) : null,
+    manufacturers: r.manufacturer
+      ? r.manufacturer.split(",").map(s => s.trim())
+      : null,
     length: r.length || null,
     crew: r.crew || null,
     passengers: r.passengers || null,
@@ -129,11 +150,15 @@ const resolvers = {
     allStarships: async (_, { page = 1 }) => {
       const url = `${REST_BASE}/starships/?page=${page}`;
       const { json, warning } = await cachedFetch(url);
-      const edges = (json.results || []).map(r => ({ node: mapRestStarship(r, warning) }));
+      const edges = (json.results || []).map(r => ({
+        node: mapRestStarship(r, warning)
+      }));
       return { edges, count: json.count || edges.length };
     },
     starshipById: async (_, { id }) => {
-      const url = String(id).startsWith("http") ? id : `${REST_BASE}/starships/${id}/`;
+      const url = String(id).startsWith("http")
+        ? id
+        : `${REST_BASE}/starships/${id}/`;
       const { json, warning } = await cachedFetch(url);
       return mapRestStarship(json, warning);
     },
@@ -151,15 +176,28 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   introspection: true,
-  // turn off persisted queries to avoid unbounded cache warning in serverless
-  persistedQueries: false,
+  persistedQueries: false
 });
+
 let serverHandler;
 export default async function handler(req, res) {
+  // ✅ CORS headers
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization"
+  );
+
+  // Handle preflight
+  if (req.method === "OPTIONS") {
+    res.status(200).end();
+    return;
+  }
+
   if (!serverHandler) {
     await server.start();
-    // serverHandler = server.createHandler({ path: "/api/graphql" }); //prev code causing only this url to work and stop /graphql
-    // do NOT pass a "path" option here — let the handler respond regardless of URL path
     serverHandler = server.createHandler();
   }
   return serverHandler(req, res);

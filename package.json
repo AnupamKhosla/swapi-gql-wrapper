@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "dev": "NODE_ENV=development node index.js"
+    "apollo": "node index.js",
+    "static": "live-server --port=3000 --no-browser",
+    "dev": "concurrently \"npm:apollo\" \"npm:static\"",
+    "start": "node index.js"
   },
+
   "dependencies": {
     "apollo-server": "^3.12.0",
     "apollo-server-micro": "^3.12.0",
@@ -14,5 +17,11 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "live-server": "^1.2.2",
+    "serve": "^14.2.5",
+    "vite": "^7.1.5"
   }
 }
