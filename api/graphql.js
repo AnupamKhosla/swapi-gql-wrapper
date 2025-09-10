@@ -172,33 +172,26 @@ const resolvers = {
 };
 
 // Create Apollo server - disable persistedQueries to avoid unbounded cache warning
+// Create Apollo server - disable persistedQueries to avoid unbounded cache warning
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   introspection: true,
-  persistedQueries: false
+  persistedQueries: false,
 });
 
 let serverHandler;
 export default async function handler(req, res) {
-  // ✅ CORS headers
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Content-Type, Authorization"
-  );
-
-  // Handle preflight
-  if (req.method === "OPTIONS") {
-    res.status(200).end();
-    return;
-  }
-
   if (!serverHandler) {
     await server.start();
-    serverHandler = server.createHandler();
+    serverHandler = server.createHandler({
+      cors: {
+        origin: '*',  // allow all domains
+        credentials: true,
+        allowedHeaders: ['Content-Type', 'Authorization'],
+        methods: ['GET', 'POST', 'OPTIONS'],
+      },
+    });
   }
   return serverHandler(req, res);
 }
