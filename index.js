@@ -3,7 +3,7 @@
 
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import LRU from "lru-cache";
+import { LRUCache } from "lru-cache";
 import fs from "fs/promises";
 import path from "path";
 
@@ -11,7 +11,7 @@ const REST_BASE = "https://swapi.py4e.com/api";
 const PORT = process.env.PORT || 4000;
 const FALLBACK_PATH = path.join(process.cwd(), "fallback.json");
 
-const cache = new LRU({ max: 500, ttl: 1000 * 60 * 5 });
+const cache = new LRUCache({ max: 500, ttl: 1000 * 60 * 5 });
 
 let FALLBACK_DATA = [];
 try {

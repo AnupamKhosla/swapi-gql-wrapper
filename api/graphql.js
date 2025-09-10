@@ -1,68 +1,61 @@
-// pages/api/graphql.js
-import { ApolloServer } from '@apollo/server';
-import { startServerAndCreateNextHandler } from '@as-integrations/next';
-import { gql } from 'graphql-tag';
-import LRU from 'lru-cache';
-import fs from 'fs/promises';
-import path from 'path';
+// api/graphql.js — Apollo Server v5 + @as-integrations/next + explicit CORS wrapper
+import { ApolloServer } from "@apollo/server";
+import { startServerAndCreateNextHandler } from "@as-integrations/next";
+import { LRUCache } from "lru-cache";
+import fs from "fs";
+import path from "path";
 
+// --- Config ---
 const REST_BASE = "https://swapi.py4e.com/api";
 const FALLBACK_PATH = path.join(process.cwd(), "fallback.json");
-const cache = new LRU({ max: 500, ttl: 1000 * 60 * 5 });
+const cache = new LRUCache({ max: 500, ttl: 1000 * 60 * 5 });
 
-// Load fallback.json once at startup (if exists)
+// --- Load fallback synchronously to avoid top-level await issues in some runtimes ---
 let FALLBACK_DATA = [];
 try {
-  const raw = await fs.readFile(FALLBACK_PATH, "utf8").catch(() => null);
-  if (raw) FALLBACK_DATA = JSON.parse(raw);
-  console.log("Loaded fallback.json entries:", FALLBACK_DATA.length);
+  if (fs.existsSync(FALLBACK_PATH)) {
+    const raw = fs.readFileSync(FALLBACK_PATH, "utf8");
+    FALLBACK_DATA = JSON.parse(raw || "[]");
+  }
+  // console.log("Loaded fallback.json entries:", FALLBACK_DATA.length);
 } catch (e) {
-  console.warn("Could not load fallback.json:", e.message);
+  console.warn("Could not load fallback.json:", e?.message || e);
 }
 
-// GraphQL schema (same as original)
-const typeDefs = gql`
-  type Starship {
-    id: ID
-    name: String
-    model: String
-    starship_class: String
-    manufacturers: [String]
-    manufacturer_raw: String
-    length: String
-    crew: String
-    passengers: String
-    cost_in_credits: String
-    consumables: String
-    max_atmosphering_speed: String
-    cargo_capacity: String
-    hyperdrive_rating: String
-    MGLT: String
-    films: [String]
-    url: String
-    dataWarning: String
-  }
+// --- Schema (same as you had) ---
+const typeDefs = `#graphql
+type Starship {
+  id: ID
+  name: String
+  model: String
+  starship_class: String
+  manufacturers: [String]
+  manufacturer_raw: String
+  length: String
+  crew: String
+  passengers: String
+  cost_in_credits: String
+  consumables: String
+  max_atmosphering_speed: String
+  cargo_capacity: String
+  hyperdrive_rating: String
+  MGLT: String
+  films: [String]
+  url: String
+  dataWarning: String
+}
 
-  type StarshipEdge {
-    node: Starship
-  }
+type StarshipEdge { node: Starship }
+type StarshipConnection { edges: [StarshipEdge], count: Int }
 
-  type StarshipConnection {
-    edges: [StarshipEdge]
-    count: Int
-  }
-
-  type Query {
-    allStarships(page: Int): StarshipConnection
-    starshipById(id: ID!): Starship
-    starshipByName(name: String!): Starship
-  }
+type Query {
+  allStarships(page: Int): StarshipConnection
+  starshipById(id: ID!): Starship
+  starshipByName(name: String!): Starship
+}
 `;
 
-/**
- * cachedFetch: Try live REST; on error fallback to fallback.json.
- * Returns { json, warning } where warning is non-null if fallback used.
- */
+// --- Helpers (same logic as before) ---
 async function cachedFetch(url) {
   const key = url;
   if (cache.has(key)) return { json: cache.get(key), warning: null };
@@ -77,35 +70,41 @@ async function cachedFetch(url) {
     cache.set(key, json);
     return { json, warning: null };
   } catch (err) {
-    console.warn("REST fetch failed for", url, err.message);
+    console.warn("REST fetch failed for", url, err?.message || err);
+
     let fallbackMatch = null;
-    // Try to find a matching fallback entry
-    fallbackMatch = FALLBACK_DATA.find(s =>
-      (s.url && url.endsWith(s.url.replace(REST_BASE, "").replace(/^\/+/, "")))
-      || url === s.url
-    );
-    // If it was a search by name (contains ?search=), match by name field
+    fallbackMatch =
+      FALLBACK_DATA.find(
+        (s) =>
+          (s.url &&
+            url.endsWith(
+              s.url.replace("https://swapi.py4e.com/api", "").replace(/^\/+/, "")
+            )) ||
+          url === s.url
+      ) || null;
+
     if (!fallbackMatch && url.includes("?search=")) {
+      const qp = url.split("?")[1];
       try {
-        const name = new URLSearchParams(url.split("?")[1]).get("search");
-        if (name) {
+        const params = new URLSearchParams(qp);
+        const name = params.get("search");
+        if (name)
           fallbackMatch = FALLBACK_DATA.find(
-            s => s.name && s.name.toLowerCase() === decodeURIComponent(name).toLowerCase()
+            (s) => s.name && s.name.toLowerCase() === decodeURIComponent(name).toLowerCase()
           );
-        }
-      } catch {}
+      } catch (e) {}
     }
-    // Default to first entry if none matched
-    if (!fallbackMatch && FALLBACK_DATA.length > 0) {
-      fallbackMatch = FALLBACK_DATA[0];
-    }
+
+    if (!fallbackMatch && FALLBACK_DATA.length > 0) fallbackMatch = FALLBACK_DATA[0];
+
     if (fallbackMatch) {
-      // If original URL was a collection, wrap in {results:[...]}
-      const isCollection = url.includes("/starships/") && (url.includes("?") ||
-        url.endsWith("/starships/") || url.includes("/starships/?"));
+      const isCollection =
+        url.includes("/starships/") &&
+        (url.includes("?") || url.endsWith("/starships/") || url.includes("/starships/?"));
       const faux = isCollection ? { results: [fallbackMatch] } : fallbackMatch;
       return { json: faux, warning: "served-from-fallback-json" };
     }
+
     throw err;
   }
 }
@@ -119,7 +118,7 @@ function mapRestStarship(rest, warning = null) {
     model: r.model || null,
     starship_class: r.starship_class || null,
     manufacturer_raw: r.manufacturer || null,
-    manufacturers: r.manufacturer ? r.manufacturer.split(",").map(s => s.trim()) : null,
+    manufacturers: r.manufacturer ? r.manufacturer.split(",").map((s) => s.trim()) : null,
     length: r.length || null,
     crew: r.crew || null,
     passengers: r.passengers || null,
@@ -135,12 +134,13 @@ function mapRestStarship(rest, warning = null) {
   };
 }
 
+// --- Resolvers ---
 const resolvers = {
   Query: {
     allStarships: async (_, { page = 1 }) => {
       const url = `${REST_BASE}/starships/?page=${page}`;
       const { json, warning } = await cachedFetch(url);
-      const edges = (json.results || []).map(r => ({ node: mapRestStarship(r, warning) }));
+      const edges = (json.results || []).map((r) => ({ node: mapRestStarship(r, warning) }));
       return { edges, count: json.count || edges.length };
     },
     starshipById: async (_, { id }) => {
@@ -157,18 +157,38 @@ const resolvers = {
   }
 };
 
-// Create ApolloServer (with introspection on for playground)
+// --- Apollo server instance ---
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  introspection: true,
-  // persistedQueries disabled by default
+  introspection: true
 });
 
-// Integrate with Next.js API (no bodyParser)
-const handler = startServerAndCreateNextHandler(server, {
-  context: async ({ req, res }) => ({ req, res })
+// --- Next-compatible handler (no top-level await needed) ---
+const nextHandler = startServerAndCreateNextHandler(server, {
+  context: async ({ req }) => ({ req })
 });
 
-export default handler;
-export const config = { api: { bodyParser: false } };
+// --- Export a wrapper that sets CORS headers and handles OPTIONS ---
+export default async function handler(req, res) {
+  // CORS headers for browser clients
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+
+  // Preflight
+  if (req.method === "OPTIONS") {
+    res.statusCode = 200;
+    res.end();
+    return;
+  }
+
+  return nextHandler(req, res);
+}
+
+export const config = {
+  api: {
+    bodyParser: false
+  }
+};

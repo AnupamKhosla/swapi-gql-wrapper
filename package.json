@@ -13,8 +13,9 @@
   },
   "dependencies": {
     "@apollo/server": "^5.0.0",
+    "@as-integrations/next": "^4.0.0",
     "graphql": "^16.11.0",
-    "lru-cache": "^7.14.0"
+    "lru-cache": "^11.2.1"
   },
   "devDependencies": {
     "concurrently": "^9.2.1",
