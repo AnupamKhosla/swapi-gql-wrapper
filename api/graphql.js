@@ -128,15 +128,22 @@ async function cachedFetch(url) {
       fallbackMatch = pool[0];
     }
 
+
     if (fallbackMatch) {
       const isCollection =
         url.includes("/starships/") &&
-        (url.includes("?") ||
-          url.endsWith("/starships/") ||
-          url.includes("/starships/?"));
-      const faux = isCollection ? { results: [fallbackMatch] } : fallbackMatch;
+        (url.includes("?") || url.endsWith("/starships/") || url.includes("/starships/?"));
+
+      if (isCollection) {
+        // Return ALL starships from fallback, not just one
+        const pool = FALLBACK_DATA.starships || FALLBACK_DATA;
+        return { json: { results: pool }, warning: "served-from-fallback-json" };
+      }
+
+      const faux = fallbackMatch;
       return { json: faux, warning: "served-from-fallback-json" };
     }
+
 
     throw err;
   }
