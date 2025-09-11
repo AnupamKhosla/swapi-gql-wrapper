@@ -6,7 +6,7 @@ import fs from "fs";
 import path from "path";
 
 // --- Config ---
-const REST_BASE = "https://swapi.py4e.com/api2";
+const REST_BASE = "https://swapi.py4e.com/api";
 const FALLBACK_PATH = path.join(process.cwd(), "fallback.json");
 const cache = new LRUCache({ max: 500, ttl: 1000 * 60 * 5 });
 
